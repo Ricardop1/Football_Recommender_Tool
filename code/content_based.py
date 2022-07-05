@@ -59,6 +59,7 @@ def get_allstats(minutes):
 
 
 def plot_similar_players(player1, player2, df):
+    print(player2)
     categories = df.iloc[:, 1:].columns.values.tolist()
     player1_stats = df[df["Player"] == player1]
     player1_stats = player1_stats.iloc[:, 1:].copy()
