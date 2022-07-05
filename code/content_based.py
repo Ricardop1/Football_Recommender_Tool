@@ -7,11 +7,11 @@ import plotly.graph_objects as go
 def get_allstats(minutes):
     # cargamos todos los datos estadisticos relativos a las distintas caracteristicas de los jugadores
     def_df_full = pd.read_csv("./code/defensive_2022.csv")
-    pass_df_full = pd.read_csv("./passing_2022.csv")
-    poss_df_full = pd.read_csv("./possession_2022.csv")
-    shoot_df_full = pd.read_csv("./shooting_2022.csv")
-    goalshoot_df_full = pd.read_csv("./goal_shot_creation_2022.csv")
-    passingType_df_full = pd.read_csv("./passing_type_2022.csv")
+    pass_df_full = pd.read_csv("./code/passing_2022.csv")
+    poss_df_full = pd.read_csv("./code/possession_2022.csv")
+    shoot_df_full = pd.read_csv("./code/shooting_2022.csv")
+    goalshoot_df_full = pd.read_csv("./code/goal_shot_creation_2022.csv")
+    passingType_df_full = pd.read_csv("./code/passing_type_2022.csv")
 
     # se eliminan algunas variables comunes o que no interesen
     def_df_full.drop(["Rk", "Born", "Matches", "Pressure_%", "vsDriblers_Tkl%", "Tkl+Int", "test"], axis=1,
