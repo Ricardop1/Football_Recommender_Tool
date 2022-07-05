@@ -49,7 +49,7 @@ elif "select_team" in st.session_state and st.session_state.select_team != "Sele
 
     position = st.selectbox("Select Position", ["DEF", "MED", "ATT"])
 
-    st.write(f"Most similar players to {st.session_state.select_team}:")
+    st.write(f"Most similar players to {st.session_state.select_team} on {position}:")
     jugadores, score = get_recommendation_by_pos_team(st.session_state.select_team, position, 10, all_stats)
     df_res_team = pd.DataFrame({"Player": jugadores, "Score": [i[1] for i in score]}).reset_index()
     st.table(df_res_team[["Player", "Score"]])
