@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
+import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
 
+@st.cache
 def get_allstats(minutes):
     # cargamos todos los datos estadisticos relativos a las distintas caracteristicas de los jugadores
     def_df_full = pd.read_csv("./data/defensive_2022.csv")
