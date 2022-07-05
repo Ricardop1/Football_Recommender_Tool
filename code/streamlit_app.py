@@ -40,7 +40,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     df_res = pd.DataFrame({"Player": jugadores, "Score": [i[1] for i in score]}).reset_index()
     st.table(df_res[["Player", "Score"]])
 
-    player_plot = st.selectbox("Select Visualizer", jugadores)
+    player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize1")
 
     fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
     st.plotly_chart(fig_play, use_container_width=True)
@@ -55,7 +55,7 @@ elif "select_team" in st.session_state and st.session_state.select_team != "Sele
     st.table(df_res_team[["Player", "Score"]])
 
     df_with_team = get_scaled_df_with_team(position, st.session_state.select_team, all_stats)
-    player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize")
+    player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize2")
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
     st.plotly_chart(fig_team, use_container_width=True)
 
