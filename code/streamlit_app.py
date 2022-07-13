@@ -12,8 +12,8 @@ players_basic_info = all_stats.iloc[:, :7]
 
 player_club_ratings = read_all_data_clubs_ratings()
 
-num_players = player_club_ratings["Player"].sort_values(ascending=True).unique()
-num_users = player_club_ratings["Squad"].sort_values(ascending=True).unique()
+num_players = len(player_club_ratings["Player"].sort_values(ascending=True).unique())
+num_users = len(player_club_ratings["Squad"].sort_values(ascending=True).unique())
 
 model = RecommenderNet(num_users, num_players, 20)
 model = model.train_model()
