@@ -46,7 +46,6 @@ class RecommenderNet(keras.Model):
         # The sigmoid activation forces the rating to between 0 and 1
         return tf.nn.sigmoid(x)
 
-    @st.cache
     def train_model(self, player_club_ratings):
         user_ids = player_club_ratings["Squad"].unique().tolist()
         self.user2user_encoded = {x: i for i, x in enumerate(user_ids)}
