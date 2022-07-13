@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-
+import streamlit as st
 from tensorflow import keras
 from tensorflow.keras import layers
 
@@ -8,6 +8,8 @@ EMBEDDING_SIZE = 50
 
 
 # creacion de la clase para el modelo de recomendación
+
+@st.cache
 class RecommenderNet(keras.Model):
     def __init__(self, num_users, num_players, embedding_size, **kwargs):
         super(RecommenderNet, self).__init__(**kwargs)
