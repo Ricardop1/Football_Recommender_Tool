@@ -116,7 +116,6 @@ def getRating(feat_value, percentils, col):
         rating = 2
     else:
         rating = 1
-
     if col in inverseRats:
         rating = invertRating(rating, 0, 5)
     return rating
