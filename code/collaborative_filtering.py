@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 from ast import literal_eval
-from .content_based import get_allstats
+from content_based import get_allstats
 
 
 def clean_clubs(clubs):
