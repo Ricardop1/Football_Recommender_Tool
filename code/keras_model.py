@@ -9,7 +9,7 @@ EMBEDDING_SIZE = 50
 
 # creacion de la clase para el modelo de recomendación
 
-@st.cache
+
 class RecommenderNet(keras.Model):
     def __init__(self, num_users, num_players, embedding_size, **kwargs):
         super(RecommenderNet, self).__init__(**kwargs)
@@ -46,6 +46,7 @@ class RecommenderNet(keras.Model):
         # The sigmoid activation forces the rating to between 0 and 1
         return tf.nn.sigmoid(x)
 
+    @st.cache
     def train_model(self, player_club_ratings):
         user_ids = player_club_ratings["Squad"].unique().tolist()
         self.user2user_encoded = {x: i for i, x in enumerate(user_ids)}
