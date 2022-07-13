@@ -12,8 +12,8 @@ players_basic_info = all_stats.iloc[:, :7]
 
 player_club_ratings = read_all_data_clubs_ratings()
 
-num_players = len(player_club_ratings["Player"].sort_values(ascending=True).unique())
-num_users = len(player_club_ratings["Squad"].sort_values(ascending=True).unique())
+num_players = len(player_club_ratings["Player"].unique())
+num_users = len(player_club_ratings["Squad"].unique())
 
 model = RecommenderNet(num_users, num_players, 20)
 model = model.train_model(player_club_ratings)
@@ -33,18 +33,6 @@ select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
                                                        "Similar to Team",
                                                        "Best players to fit a Team"], key="select_reco")
 
-col1, col2 = st.columns([1, 1])
-
-with col1:
-    leagues_filter = st.multiselect("Select League", players_basic_info["Comp"].sort_values(ascending=True).unique())
-with col2:
-    if select_type == "Similar to Player":
-        st.selectbox("Select Player",
-                     players_basic_info.loc[players_basic_info["Comp"] in leagues_filter].sort_values(
-                         by=['Player']).unique(), key="select_player")
-
-    else:
-        st.selectbox("Select Team", unique_teams, key="select_team")
 
 if "select_player" in st.session_state and st.session_state.select_player != "Select Option":
     st.write(f"Most similar players to {st.session_state.select_player}:")
