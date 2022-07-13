@@ -16,7 +16,7 @@ num_players = len(player_club_ratings["Player"].sort_values(ascending=True).uniq
 num_users = len(player_club_ratings["Squad"].sort_values(ascending=True).unique())
 
 model = RecommenderNet(num_users, num_players, 20)
-model = model.train_model()
+model = model.train_model(player_club_ratings)
 
 stats_to_scale = all_stats.iloc[:, np.r_[0, 7:all_stats.shape[1]]]
 only_stats = stats_to_scale.iloc[:, 1:]
