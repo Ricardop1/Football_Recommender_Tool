@@ -29,9 +29,16 @@ unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
 unique_teams = np.insert(unique_teams, 0, "Select Option")
 
 
-select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
-                                                       "Similar to Team",
-                                                       "Best players to fit a Team"], key="select_reco")
+col1, col2 = st.columns([1, 1])
+with col1:
+    select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
+                                                           "Similar to Team",
+                                                           "Best players to fit a Team"], key="select_reco")
+with col2:
+    if select_type == "Similar to Player":
+        st.selectbox("Select Player", unique_players,  key="select_player")
+    else:
+        st.selectbox("Select Team", unique_teams, key="select_team")
 
 
 if "select_player" in st.session_state and st.session_state.select_player != "Select Option":
