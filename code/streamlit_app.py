@@ -1,11 +1,15 @@
 import numpy as np
 import streamlit as st
 from content_based import *
+from collaborative_filtering import *
 import pandas as pd
 
 st.title('Football recommender Tool')
 
 all_stats = get_allstats(800)
+players_basic_info = all_stats.iloc[:, :7]
+
+player_club_ratings = read_all_data_clubs_ratings()
 
 stats_to_scale = all_stats.iloc[:,np.r_[0,7:all_stats.shape[1]]]
 only_stats = stats_to_scale.iloc[:,1:]
@@ -13,21 +17,28 @@ only_stats=(only_stats-only_stats.min())/(only_stats.max()-only_stats.min())
 plot_players = pd.concat([stats_to_scale.iloc[:,0],only_stats],  axis=1)
 
 
-unique_players = all_stats["Player"].sort_values(ascending=True).unique()
+unique_players = players_basic_info["Player"].sort_values(ascending=True).unique()
 unique_players = np.insert(unique_players, 0, "Select Option")
-unique_teams = all_stats["Squad"].sort_values(ascending=True).unique()
+unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
 unique_teams = np.insert(unique_teams, 0, "Select Option")
+
+st.table(player_club_ratings)
+
+
+select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
+                                                       "Similar to Team",
+                                                       "Best players to fit a Team"], key="select_reco")
+
 
 col1, col2 = st.columns([1, 1])
 
 
 with col1:
-    select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
-                                                           "Similar to Team",
-                                                           "Best players to fit a Team"], key="select_reco")
+    leagues_filter = st.multiselect("Select League",players_basic_info["Comp"].sort_values(ascending=True).unique())
 with col2:
     if select_type == "Similar to Player":
-        st.selectbox("Select Player", unique_players,  key="select_player")
+        st.selectbox("Select Player",
+                     players_basic_info.loc[players_basic_info["Comp"] in leagues_filter].sort_values(by=['Player']).unique(),  key="select_player")
 
     else:
         st.selectbox("Select Team", unique_teams, key="select_team")
