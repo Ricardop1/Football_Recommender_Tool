@@ -20,7 +20,6 @@ def clean_clubs(clubs):
     return data
 
 
-@st.cache
 def read_all_data_clubs_ratings():
     players_clubs = pd.read_csv("./data/final_df.csv")
     # aplicamos la función cleanClubs
