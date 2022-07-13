@@ -29,8 +29,6 @@ unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
 unique_teams = np.insert(unique_teams, 0, "Select Option")
 
 
-st.table(model.get_recommendations(player_club_ratings, "Wolves"))
-
 select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
                                                        "Similar to Team",
                                                        "Best players to fit a Team"], key="select_reco")
