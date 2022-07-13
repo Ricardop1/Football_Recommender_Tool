@@ -11,6 +11,7 @@ EMBEDDING_SIZE = 50
 class RecommenderNet(keras.Model):
     def __init__(self, num_users, num_players, embedding_size, **kwargs):
         super(RecommenderNet, self).__init__(**kwargs)
+        self.user2user_encoded = None
         self.player2player_encoded = None
         self.userencoded2user = None
         self.num_users = num_users
@@ -44,15 +45,15 @@ class RecommenderNet(keras.Model):
 
     def train_model(self, player_club_ratings):
         user_ids = player_club_ratings["Squad"].unique().tolist()
-        user2user_encoded = {x: i for i, x in enumerate(user_ids)}
+        self.user2user_encoded = {x: i for i, x in enumerate(user_ids)}
         self.userencoded2user = {i: x for i, x in enumerate(user_ids)}
         player_ids = player_club_ratings["Player"].unique().tolist()
         self.player2player_encoded = {x: i for i, x in enumerate(player_ids)}
         player_encoded2player = {i: x for i, x in enumerate(player_ids)}
-        player_club_ratings["user"] = player_club_ratings["Squad"].map(user2user_encoded)
+        player_club_ratings["user"] = player_club_ratings["Squad"].map(self.user2user_encoded)
         player_club_ratings["player"] = player_club_ratings["Player"].map(self.player2player_encoded)
 
-        num_users = len(user2user_encoded)
+        num_users = len(self.user2user_encoded)
         num_players = len(player_encoded2player)
         player_club_ratings["rating"] = player_club_ratings["Rating"].values.astype(np.float32)
         # min and max ratings will be used to normalize the ratings later
