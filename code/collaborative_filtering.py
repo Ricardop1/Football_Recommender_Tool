@@ -1,12 +1,6 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-
-from tensorflow import keras
-from tensorflow.keras import layers
-from collections import defaultdict
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error
 from ast import literal_eval
 from .content_based import get_allstats
 
