@@ -9,11 +9,6 @@ st.title('Football recommender Tool')
 all_stats = get_allstats(500)
 players_basic_info = all_stats.iloc[:, :7]
 
-player_club_ratings = read_all_data_clubs_ratings()
-
-num_players = len(player_club_ratings["Player"].unique())
-num_users = len(player_club_ratings["Squad"].unique())
-
 model = get_model()
 joint_df = load_joint_df()
 
