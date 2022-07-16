@@ -121,7 +121,7 @@ def getRating(feat_value, percentils, col):
     return rating
 
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def get_model():
     return keras.models.load_model('./data/recommender_bp_model')
 

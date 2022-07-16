@@ -14,8 +14,7 @@ player_club_ratings = read_all_data_clubs_ratings()
 num_players = len(player_club_ratings["Player"].unique())
 num_users = len(player_club_ratings["Squad"].unique())
 
-og_model = get_model()
-model = og_model
+model = get_model()
 joint_df = load_joint_df()
 
 stats_to_scale = all_stats.iloc[:, np.r_[0, 7:all_stats.shape[1]]]
