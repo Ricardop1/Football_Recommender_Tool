@@ -70,7 +70,10 @@ elif "select_team" in st.session_state and \
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
         st.session_state.select_team != "Select Option":
-    st.write(f"Best fit players to {st.session_state.select_team}:")
 
     current_df, recommender_df = get_recommendation_model(st.session_state.select_team,model, joint_df)
+    st.write(f"Best 5 current players that played in {st.session_state.select_team}:")
     st.table(current_df)
+    st.write(f"Best fit players to {st.session_state.select_team}:")
+    st.table(recommender_df)
+
