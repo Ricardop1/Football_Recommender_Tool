@@ -2,12 +2,11 @@ import numpy as np
 import streamlit as st
 from content_based import *
 from collaborative_filtering import *
-from keras_model import *
 import pandas as pd
 
 st.title('Football recommender Tool')
 
-all_stats = get_allstats(800)
+all_stats = get_allstats(500)
 players_basic_info = all_stats.iloc[:, :7]
 
 player_club_ratings = read_all_data_clubs_ratings()
@@ -15,8 +14,8 @@ player_club_ratings = read_all_data_clubs_ratings()
 num_players = len(player_club_ratings["Player"].unique())
 num_users = len(player_club_ratings["Squad"].unique())
 
-model = RecommenderNet(num_users, num_players, 20)
-model = model.train_model(player_club_ratings)
+model = load_model()
+joint_df = load_joint_df()
 
 stats_to_scale = all_stats.iloc[:, np.r_[0, 7:all_stats.shape[1]]]
 only_stats = stats_to_scale.iloc[:, 1:]
@@ -53,7 +52,9 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
     st.plotly_chart(fig_play, use_container_width=True)
 
-elif "select_team" in st.session_state and st.session_state.select_team != "Select Option":
+elif "select_team" in st.session_state and \
+        select_type == "Similar to Team" and \
+        st.session_state.select_team != "Select Option":
 
     position = st.selectbox("Select Position", ["DEF", "MED", "ATT"])
 
@@ -66,3 +67,9 @@ elif "select_team" in st.session_state and st.session_state.select_team != "Sele
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize2")
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
     st.plotly_chart(fig_team, use_container_width=True)
+elif "select_team" in st.session_state and \
+        select_type == "Best players to fit a Team":
+    st.write(f"Best fit players to {st.session_state.select_team}:")
+
+    current_df, recommender_df = get_recommendation_model(st.session_state.select_team,model, joint_df)
+    st.table(current_df)
