@@ -14,7 +14,7 @@ player_club_ratings = read_all_data_clubs_ratings()
 num_players = len(player_club_ratings["Player"].unique())
 num_users = len(player_club_ratings["Squad"].unique())
 
-model = get_model()
+model = get_model().copy()
 joint_df = load_joint_df()
 
 stats_to_scale = all_stats.iloc[:, np.r_[0, 7:all_stats.shape[1]]]
@@ -68,7 +68,8 @@ elif "select_team" in st.session_state and \
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
     st.plotly_chart(fig_team, use_container_width=True)
 elif "select_team" in st.session_state and \
-        select_type == "Best players to fit a Team":
+        select_type == "Best players to fit a Team" and \
+        st.session_state.select_team != "Select Option":
     st.write(f"Best fit players to {st.session_state.select_team}:")
 
     current_df, recommender_df = get_recommendation_model(st.session_state.select_team,model, joint_df)
