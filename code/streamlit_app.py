@@ -4,6 +4,7 @@ from content_based import *
 from collaborative_filtering import *
 import pandas as pd
 
+
 st.title('Football recommender Tool')
 
 all_stats = get_allstats(500)
@@ -21,16 +22,21 @@ unique_players = players_basic_info["Player"].sort_values(ascending=True).unique
 unique_players = np.insert(unique_players, 0, "Select Option")
 unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
 unique_teams = np.insert(unique_teams, 0, "Select Option")
+unique_nations = players_basic_info["Nation"].sort_values(ascending=True).unique()
+unique_nations = np.insert(unique_nations, 0, "Select Option")
 
 
 col1, col2 = st.columns([1, 1])
 with col1:
     select_type = st.selectbox("Select Recommender Type", ["Similar to Player",
                                                            "Similar to Team",
-                                                           "Best players to fit a Team"], key="select_reco")
+                                                           "Best players to fit a Team",
+                                                           "National Team Recommender"], key="select_reco")
 with col2:
     if select_type == "Similar to Player":
         st.selectbox("Select Player", unique_players,  key="select_player")
+    elif select_type == "National Team Recommender":
+        st.selectbox("Select National Team: ", unique_nations,  key="select_nation")
     else:
         st.selectbox("Select Team", unique_teams, key="select_team")
 
@@ -71,4 +77,18 @@ elif "select_team" in st.session_state and \
     st.table(current_df)
     st.write(f"Best fit players to {st.session_state.select_team}:")
     st.table(recommender_df)
+
+elif "select_nation" in st.session_state and \
+        select_type == "National Team Recommender" and \
+        st.session_state.select_team != "Select Option":
+
+    def_df, mid_df, att_df = get_national_team(st.session_state.select_nation, all_stats)
+
+    st.write(f"Recommender defensive players for {st.session_state.select_nation}:")
+    st.table(def_df)
+    st.write(f"Recommender midfield players for {st.session_state.select_nation}:")
+    st.table(mid_df)
+    st.write(f"Recommender attack players for {st.session_state.select_nation}:")
+    st.table(att_df)
+
 

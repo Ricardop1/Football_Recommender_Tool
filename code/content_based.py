@@ -4,6 +4,7 @@ import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
+from paretoset import paretoset
 
 
 def get_allstats(minutes):
@@ -213,3 +214,42 @@ def get_scaled_df_with_team(pos, team, all_stats):
     df_team[cols_pos] = scaler.fit_transform(df_team[cols_pos])
 
     return df_team[["Player"] + list(cols_pos)]
+
+
+
+['tackles_Def 3rd' 'Pressure_Def 3rd' 'Pressure_Att 3rd' 'Blocks' 'Int'
+ 'Ttl_Pass_Compl' 'Ttl_Pass_Att' 'Ttl_Dist_Pass' 'Prgsv_Dist'
+ 'Medium_Pass_Cmp' 'Medium_Pass_Att' 'Long_Pass_Cmp' 'Long_Pass_Att'
+ 'Touches_Ttl' 'Touches_Def3rd' 'Touches_Mid3rd' 'Touches_AttPen'
+ 'Touches_Live' 'CPA' 'Prog_Pass' 'Poss_Fail' 'Gls' 'Sh' 'SoT' 'xG']
+
+def get_national_team(nation, all_stats):
+    pos_df = get_positions_df(all_stats)
+
+    data_def, col_def = pos_df["DEF"]
+    data_def = data_def.loc[data_def.Nation == nation]
+
+    data_mid, col_mid = pos_df["MED"]
+    data_mid = data_mid.loc[data_mid.Nation == nation]
+
+    data_att, col_att = pos_df["ATT"]
+    data_att = data_att.loc[data_att.Nation == nation]
+
+    mask_def = paretoset(data_def[col_def], sense=["max", "max","max","max","max","max",
+                                                   "max","max","max","max","max","max",
+                                                   "min","max","max","max","max","max"])
+    mask_mid = paretoset(data_mid[col_mid], sense=["max", "max","max","max","max","max",
+                                                   "max","max","max","max","max","max",
+                                                   "max","max","max","max","max","max",
+                                                   "max"])
+    mask_att = paretoset(data_att[col_att], sense=["max", "max","max","max","max","max",
+                                                   "min","max","max","max","max","max",
+                                                   "min","max","min","max","max","max",
+                                                   "max","max","min","max","max","max",
+                                                   "max"])
+
+    paretoset_def = data_def[mask_def]
+    paretoset_mid = data_mid[mask_mid]
+    paretoset_att = data_att[mask_att]
+
+    return paretoset_def["Player"], paretoset_mid["Player"], paretoset_att["Player"]
