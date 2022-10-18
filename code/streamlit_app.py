@@ -95,7 +95,7 @@ elif "select_nation" in st.session_state and \
     def_df, mid_df, att_df = get_national_team(st.session_state.select_nation, all_stats)
 
     st.write(f"Recommender defensive players for {st.session_state.select_nation}:")
-    st.table(def_df.to_string(index=False))
+    st.table(def_df)
     st.write(f"Recommender midfield players for {st.session_state.select_nation}:")
     st.table(mid_df)
     st.write(f"Recommender attack players for {st.session_state.select_nation}:")
