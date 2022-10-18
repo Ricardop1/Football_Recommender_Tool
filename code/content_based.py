@@ -216,13 +216,6 @@ def get_scaled_df_with_team(pos, team, all_stats):
     return df_team[["Player"] + list(cols_pos)]
 
 
-
-['tackles_Def 3rd' 'Pressure_Def 3rd' 'Pressure_Att 3rd' 'Blocks' 'Int'
- 'Ttl_Pass_Compl' 'Ttl_Pass_Att' 'Ttl_Dist_Pass' 'Prgsv_Dist'
- 'Medium_Pass_Cmp' 'Medium_Pass_Att' 'Long_Pass_Cmp' 'Long_Pass_Att'
- 'Touches_Ttl' 'Touches_Def3rd' 'Touches_Mid3rd' 'Touches_AttPen'
- 'Touches_Live' 'CPA' 'Prog_Pass' 'Poss_Fail' 'Gls' 'Sh' 'SoT' 'xG']
-
 def get_national_team(nation, all_stats):
     pos_df = get_positions_df(all_stats)
 
