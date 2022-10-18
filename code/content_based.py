@@ -5,6 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
 from paretoset import paretoset
+from topsis import Topsis
 
 
 def get_allstats(minutes):
@@ -230,22 +231,40 @@ def get_national_team(nation, all_stats):
 
     st.write(all_stats[all_stats.Nation == nation].shape)
 
-    mask_def = paretoset(data_def[col_def], sense=["max", "max","max","max","max","max",
-                                                   "max","max","max","max","max","max",
-                                                   "min","max","max","max","max","max",
-                                                   "max","max","max"])
-    mask_mid = paretoset(data_mid[col_mid], sense=["max", "max","max","max","max","max",
-                                                   "max","max","max","max","max","max",
-                                                   "max","max","max","max","max","max",])
-    mask_att = paretoset(data_att[col_att], sense=["max", "max","max","max","max","max",
-                                                   "min","max","max","max","max","max",
-                                                   "min","max","min","max","max","max",
-                                                   "max","max","max","min","max","max",
-                                                   "max","max","max"])
+    def_weigts=["max", "max","max","max","max","max",
+     "max","max","max","max","max","max",
+     "min","max","max","max","max","max",
+     "max","max","max"]
+    mid_weights = ["max", "max","max","max","max","max",
+                   "max","max","max","max","max","max",
+                   "max","max","max","max","max","max",]
+    att_weights = ["max", "max","max","max","max","max",
+                   "min","max","max","max","max","max",
+                   "min","max","min","max","max","max",
+                   "max","max","max","min","max","max",
+                   "max","max","max"]
+    mask_def = paretoset(data_def[col_def], sense=def_weigts)
+    mask_mid = paretoset(data_mid[col_mid], sense=mid_weights)
+    mask_att = paretoset(data_att[col_att], sense=att_weights)
 
     paretoset_def = data_def[mask_def]
     paretoset_mid = data_mid[mask_mid]
     paretoset_att = data_att[mask_att]
+
+    def_crit = [True if w == "max" else False for w in def_weigts]
+    mid_crit = [True if w == "max" else False for w in def_weigts]
+    att_crit = [True if w == "max" else False for w in def_weigts]
+
+    def_weigts = [1 for w in def_weigts]
+    mid_weights = [1 for w in def_weigts]
+    att_weights = [1 for w in def_weigts]
+
+    t_def = Topsis(paretoset_def[col_def], def_weigts, def_crit)
+
+    t_def.calc()
+
+    st.write(t_def.best_distance)
+
 
     return paretoset_def[["Player","Nation"]], paretoset_mid[["Player","Nation"]], paretoset_att[["Player","Nation"]]
 
