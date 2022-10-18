@@ -80,7 +80,7 @@ elif "select_team" in st.session_state and \
 
 elif "select_nation" in st.session_state and \
         select_type == "National Team Recommender" and \
-        st.session_state.select_team != "Select Option":
+        st.session_state.select_nation != "Select Option":
 
     def_df, mid_df, att_df = get_national_team(st.session_state.select_nation, all_stats)
 
