@@ -4,4 +4,3 @@ pandas
 plotly
 scikit-learn
 paretoset
-topsis
