@@ -6,6 +6,16 @@ import pandas as pd
 
 
 st.title('Football recommender Tool')
+hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+
+# Inject CSS with Markdown
+st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
 
 all_stats = get_allstats(500)
 players_basic_info = all_stats.iloc[:, :7]
