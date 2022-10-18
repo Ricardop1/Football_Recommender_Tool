@@ -5,7 +5,6 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
 from paretoset import paretoset
-from topsis import Topsis
 
 
 def get_allstats(minutes):
@@ -251,20 +250,67 @@ def get_national_team(nation, all_stats):
     paretoset_mid = data_mid[mask_mid]
     paretoset_att = data_att[mask_att]
 
-    def_crit = [True if w == "max" else False for w in def_weigts]
-    mid_crit = [True if w == "max" else False for w in def_weigts]
-    att_crit = [True if w == "max" else False for w in def_weigts]
+    def_crit = ["+" if w == "max" else "-" for w in def_weigts]
+    mid_crit = ["+" if w == "max" else "-" for w in def_weigts]
+    att_crit = ["+" if w == "max" else "-" for w in def_weigts]
 
     def_weigts = [1 for w in def_weigts]
     mid_weights = [1 for w in def_weigts]
     att_weights = [1 for w in def_weigts]
 
-    t_def = Topsis(paretoset_def[col_def], def_weigts, def_crit)
-
-    t_def.calc()
-
-    st.write(t_def.best_distance)
+    test_df = calc_topsis(data_def[col_def],len(col_def),def_weigts, def_crit)
+    st.table(test_df)
 
 
     return paretoset_def[["Player","Nation"]], paretoset_mid[["Player","Nation"]], paretoset_att[["Player","Nation"]]
 
+def Normalize(dataset, nCol, weights):
+    for i in range(1, nCol):
+        temp = 0
+        # Calculating Root of Sum of squares of a particular column
+        for j in range(len(dataset)):
+            temp = temp + dataset.iloc[j, i]**2
+        temp = temp**0.5
+        # Weighted Normalizing a element
+        for j in range(len(dataset)):
+            dataset.iat[j, i] = (dataset.iloc[j, i] / temp)*weights[i-1]
+    return dataset
+
+# Calculate ideal best and ideal worst
+def Calc_Values(dataset, nCol, impact):
+    p_sln = (dataset.max().values)[1:]
+    n_sln = (dataset.min().values)[1:]
+    for i in range(1, nCol):
+        if impact[i-1] == '-':
+            p_sln[i-1], n_sln[i-1] = n_sln[i-1], p_sln[i-1]
+    return p_sln, n_sln
+
+def calc_topsis(dataset, ncol, weights, impact):
+    temp_dataset = Normalize(dataset, ncol, weights)
+    p_sln, n_sln = Calc_Values(temp_dataset, ncol, impact)
+
+    # calculating topsis score
+    score = [] # Topsis score
+    pp = [] # distance positive
+    nn = [] # distance negative
+
+
+    # Calculating distances and Topsis score for each row
+    for i in range(len(temp_dataset)):
+        temp_p, temp_n = 0, 0
+        for j in range(1, ncol):
+            temp_p = temp_p + (p_sln[j-1] - temp_dataset.iloc[i, j])**2
+            temp_n = temp_n + (n_sln[j-1] - temp_dataset.iloc[i, j])**2
+        temp_p, temp_n = temp_p**0.5, temp_n**0.5
+        score.append(temp_n/(temp_p + temp_n))
+        nn.append(temp_n)
+        pp.append(temp_p)
+
+    dataset['distance positive'] = pp
+    dataset['distance negative'] = nn
+    dataset['Topsis Score'] = score
+
+    # calculating the rank according to topsis score
+    dataset['Rank'] = (dataset['Topsis Score'].rank(method='max', ascending=False))
+    dataset = dataset.astype({"Rank": int})
+    return dataset
