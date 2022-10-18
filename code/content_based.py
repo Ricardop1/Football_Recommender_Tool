@@ -222,14 +222,14 @@ def get_national_team(nation, all_stats):
     data_def, col_def = pos_df["DEF"]
     data_def = data_def.loc[data_def.Nation == nation]
 
-    data_mid, data_mid = pos_df["MED"]
+    data_mid, col_mid = pos_df["MED"]
     data_mid = data_mid.loc[data_mid.Nation == nation]
 
     data_att, col_att = pos_df["ATT"]
     data_att = data_att.loc[data_att.Nation == nation]
 
-    st.write(data_mid[data_mid].shape)
-    st.write(data_mid[data_mid].columns)
+    st.write(data_mid[col_mid].shape)
+    st.write(data_mid[col_mid].columns)
 
     mask_def = paretoset(data_def[col_def], sense=["max", "max","max","max","max","max",
                                                    "max","max","max","max","max","max",
