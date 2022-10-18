@@ -247,5 +247,5 @@ def get_national_team(nation, all_stats):
     paretoset_mid = data_mid[mask_mid]
     paretoset_att = data_att[mask_att]
 
-    return paretoset_def["Player"], paretoset_mid["Player"], paretoset_att["Player"]
+    return paretoset_def[["Player","Nation"]], paretoset_mid[["Player","Nation"]], paretoset_att[["Player","Nation"]]
 
