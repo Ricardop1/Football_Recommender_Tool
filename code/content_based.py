@@ -154,13 +154,13 @@ def get_positions_df(all_stats):
     high_corr_fw = corr_pos[corr_pos["FW"] > 0.5].index.values
     high_corr_fw = high_corr_fw[[x not in ["DF", "MF", "FW"] for x in high_corr_fw]]
 
-    defensive_df = all_stats[list(high_corr_df) + ["Player", "Squad", "Pos","Nation"]]
+    defensive_df = all_stats[list(high_corr_df) + ["Player", "Squad", "Pos", "Nation"]]
     defensive_df = defensive_df[defensive_df["Pos"] == "DF"]
 
-    midfield_df = all_stats[list(high_corr_mf) + ["Player", "Squad", "Pos","Nation"]]
+    midfield_df = all_stats[list(high_corr_mf) + ["Player", "Squad", "Pos", "Nation"]]
     midfield_df = midfield_df[midfield_df["Pos"] == "MF"]
 
-    forward_df = all_stats[list(high_corr_fw) + ["Player", "Squad", "Pos","Nation"]]
+    forward_df = all_stats[list(high_corr_fw) + ["Player", "Squad", "Pos", "Nation"]]
     forward_df = forward_df[forward_df["Pos"] == "FW"]
 
     dict_pos = {
@@ -227,7 +227,7 @@ def get_national_team(nation, all_stats):
 
     data_att, col_att = pos_df["ATT"]
     data_att = data_att.loc[data_att.Nation == nation]
-
+    print(data_def[col_def].shape())
     mask_def = paretoset(data_def[col_def], sense=["max", "max","max","max","max","max",
                                                    "max","max","max","max","max","max",
                                                    "min","max","max","max","max","max"])
