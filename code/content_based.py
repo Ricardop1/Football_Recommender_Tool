@@ -240,7 +240,9 @@ def get_national_team(nation, all_stats):
                                                    "max","max","max","max","max","max",])
     mask_att = paretoset(data_att[col_att], sense=["max", "max","max","max","max","max",
                                                    "min","max","max","max","max","max",
-                                                   "min","max","min","max","max","max"])
+                                                   "min","max","min","max","max","max",
+                                                   "max","max","max","min","max","max",
+                                                   "max","max","max"])
 
     paretoset_def = data_def[mask_def]
     paretoset_mid = data_mid[mask_mid]
