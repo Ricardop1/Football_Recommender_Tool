@@ -258,8 +258,8 @@ def get_national_team(nation, all_stats):
     mid_weights = [1 for w in def_weigts]
     att_weights = [1 for w in def_weigts]
 
-    test_df = calc_topsis(data_def[col_def],len(col_def),def_weigts, def_crit)
-    st.table(test_df)
+    paretoset_def = calc_topsis(data_def[col_def],len(col_def),def_weigts, def_crit)
+    st.table(paretoset_def.sort_values(by=['Rank']))
 
 
     return paretoset_def[["Player","Nation"]], paretoset_mid[["Player","Nation"]], paretoset_att[["Player","Nation"]]
