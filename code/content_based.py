@@ -234,7 +234,7 @@ def get_national_team(nation, all_stats):
     mask_def = paretoset(data_def[col_def], sense=["max", "max","max","max","max","max",
                                                    "max","max","max","max","max","max",
                                                    "min","max","max","max","max","max",
-                                                   "max","max"])
+                                                   "max","max","max"])
     mask_mid = paretoset(data_mid[col_mid], sense=["max", "max","max","max","max","max",
                                                    "max","max","max","max","max","max",
                                                    "max","max","max","max","max","max",
