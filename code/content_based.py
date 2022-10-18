@@ -251,12 +251,12 @@ def get_national_team(nation, all_stats):
     paretoset_att = data_att[mask_att]
 
     def_crit = ["+" if w == "max" else "-" for w in def_weigts]
-    mid_crit = ["+" if w == "max" else "-" for w in def_weigts]
-    att_crit = ["+" if w == "max" else "-" for w in def_weigts]
+    mid_crit = ["+" if w == "max" else "-" for w in mid_weights]
+    att_crit = ["+" if w == "max" else "-" for w in att_weights]
 
     def_weigts = [1 for w in def_weigts]
-    mid_weights = [1 for w in def_weigts]
-    att_weights = [1 for w in def_weigts]
+    mid_weights = [1 for w in mid_weights]
+    att_weights = [1 for w in att_weights]
 
     paretoset_def["Rank"] = calc_topsis(data_def[col_def],len(col_def),def_weigts, def_crit)["Rank"]
     paretoset_def = paretoset_def.sort_values(by=['Rank'])
