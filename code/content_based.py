@@ -246,6 +246,7 @@ def get_national_team(nation, all_stats):
      "min","max","max","max","max","max",
      "max","max","max"]
     def_weigts = ["max" for i in col_def]
+    st.write(def_weigts)
     mid_weights = ["max", "max","max","max","max","max",
                    "max","max","max","max","max","max",
                    "max","max","max","max","max","max",]
