@@ -16,16 +16,16 @@ hide_table_row_index = """
 # Inject CSS with Markdown
 st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
-
-all_stats = get_allstats(500)
-players_basic_info = all_stats.iloc[:, :7]
+all_stats = get_full_stats(500)
+players_basic_info = all_stats.iloc[:, :8]
 
 model = get_model()
 joint_df = load_joint_df()
 
-stats_to_scale = all_stats.iloc[:, np.r_[0, 7:all_stats.shape[1]]]
+stats_to_scale = all_stats.iloc[:, np.r_[0, 8:all_stats.shape[1]]]
 only_stats = stats_to_scale.iloc[:, 1:]
 only_stats = (only_stats - only_stats.min()) / (only_stats.max() - only_stats.min())
+
 plot_players = pd.concat([stats_to_scale.iloc[:, 0], only_stats], axis=1)
 
 unique_players = players_basic_info["Player"].sort_values(ascending=True).unique()

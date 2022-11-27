@@ -1,10 +1,19 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
 from paretoset import paretoset
+
+
+@st.cache
+def get_full_stats(minutes):
+    full_data = pd.read_csv("./data/full_data_2022.csv")
+    full_data = full_data[(full_data['Pos'] != 'GK') & (full_data["MP"] >= minutes)].reset_index()
+    full_data.drop(["index","MP"],axis = 1, inplace = True)
+
+    return full_data
 
 
 def get_allstats(minutes):
@@ -117,15 +126,18 @@ def recommendations(name, df, cosine_matrix, number_of_recommendations):
 
 
 def get_recommendations_by_player(name_player, df, number_of_recommendations):
-    df_stats = df.iloc[:, 7:]
-    cosine_matrix = cosine_similarity(df_stats, df_stats)
+    scaler = StandardScaler()
+    df_Stats = df.iloc[:,8:]
+    df_Stats_scaled = scaler.fit_transform(df_Stats)
+
+    cosine_matrix = cosine_similarity(df_Stats_scaled)
     return recommendations(name_player, df, cosine_matrix, number_of_recommendations)
 
 
 def get_positions_df(all_stats):
     # obtenemos las variables estadisticas para calcular la correlacion con la posicion
 
-    cols_to_corr = all_stats.iloc[:, 7:].columns.values.tolist()
+    cols_to_corr = all_stats.iloc[:, 8:].columns.values.tolist()
     cols_to_corr.append("Pos")
 
     # hacemos one hot encoding de la variable POS
@@ -145,10 +157,7 @@ def get_positions_df(all_stats):
 
     high_corr_mf = corr_pos[corr_pos["MF"] > 0.4].index.values
     high_corr_mf = high_corr_mf[[x not in ["DF", "MF", "FW"] for x in high_corr_mf]]
-    mf_feat = ["Pressure_Press", "Pressure_Def 3rd", "Pressure_Mid 3rd", "Pressure_Att 3rd",
-               "tackles_Def 3rd", "tackles_Mid 3rd", "tackles_Att 3rd", "Blocks", "SCA", "GCA",
-               "Ttl_Pass_Compl", "Ttl_Dist_Pass", "Prgsv_Dist", "Touches_Def3rd", "Touches_Mid3rd",
-               "Touches_Att3rd", "Touches_Def3rd", "Touches_Mid3rd", "Touches_Att3rd"]
+    mf_feat = []
     high_corr_mf = np.unique(high_corr_mf.tolist() + mf_feat)
 
     high_corr_fw = corr_pos[corr_pos["FW"] > 0.5].index.values
@@ -184,7 +193,10 @@ def get_recommendation_by_pos_team(team, pos, num, all_stats):
     df_team.drop(["index"], axis=1, inplace=True)
 
     df_stats = df_team[cols_pos]
-    cosine_matrix = cosine_similarity(df_stats, df_stats)
+
+    scaler = StandardScaler()
+    df_Stats_scaled = scaler.fit_transform(df_stats)
+    cosine_matrix = cosine_similarity(df_Stats_scaled)
 
     return recommendations(team, df_team, cosine_matrix, num)
 
