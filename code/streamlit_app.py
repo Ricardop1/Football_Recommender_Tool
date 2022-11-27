@@ -27,7 +27,6 @@ only_stats = stats_to_scale.iloc[:, 1:]
 only_stats = (only_stats - only_stats.min()) / (only_stats.max() - only_stats.min())
 
 plot_players = pd.concat([stats_to_scale.iloc[:, 0], only_stats], axis=1)
-st.table(plot_players.head())
 
 unique_players = players_basic_info["Player"].sort_values(ascending=True).unique()
 unique_players = np.insert(unique_players, 0, "Select Option")
@@ -62,7 +61,6 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize1")
 
     fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
-    st.write(st.session_state.select_player)
     st.plotly_chart(fig_play, use_container_width=True)
 
 elif "select_team" in st.session_state and \

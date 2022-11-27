@@ -73,7 +73,6 @@ def plot_similar_players(player1, player2, df):
     player1_stats = player1_stats.iloc[:, 1:].copy()
     player2_stats = df[df["Player"] == player2]
     player2_stats = player2_stats.iloc[:, 1:].copy()
-    st.table(player2_stats)
 
     fig = go.Figure()
 
