@@ -232,15 +232,15 @@ def get_national_team(nation, all_stats):
     pos_df = get_positions_df(all_stats)
 
     data_def, col_def = pos_df["DEF"]
-    data_def = data_def.loc[data_def.Country == nation]
+    data_def = data_def.loc[data_def.Nation == nation]
 
     data_mid, col_mid = pos_df["MED"]
-    data_mid = data_mid.loc[data_mid.Country == nation]
+    data_mid = data_mid.loc[data_mid.Nation == nation]
 
     data_att, col_att = pos_df["ATT"]
-    data_att = data_att.loc[data_att.Country == nation]
+    data_att = data_att.loc[data_att.Nation == nation]
 
-    st.write(all_stats[all_stats.Country == nation].shape)
+    st.write(all_stats[all_stats.Nation == nation].shape)
 
     def_weigts=["max", "max","max","max","max","max",
      "max","max","max","max","max","max",
