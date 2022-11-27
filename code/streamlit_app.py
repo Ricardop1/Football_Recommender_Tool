@@ -33,7 +33,8 @@ unique_players = players_basic_info["Player"].sort_values(ascending=True).unique
 unique_players = np.insert(unique_players, 0, "Select Option")
 unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
 unique_teams = np.insert(unique_teams, 0, "Select Option")
-unique_nations = players_basic_info["Nation"].sort_values(ascending=True).unique()
+players_basic_info["Country"] = players_basic_info.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()))
+unique_nations = players_basic_info["Country"].sort_values(ascending=True).unique()
 unique_nations = np.insert(unique_nations, 0, "Select Option")
 
 
@@ -96,7 +97,7 @@ elif "select_nation" in st.session_state and \
     def_df, mid_df, att_df = get_national_team(st.session_state.select_nation, all_stats)
 
     st.write(f"Recommender defensive players for {st.session_state.select_nation}:")
-    def_df["Country"] = def_df.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()))
+
     st.table(def_df)
     st.write(f"Recommender midfield players for {st.session_state.select_nation}:")
     st.table(mid_df)
