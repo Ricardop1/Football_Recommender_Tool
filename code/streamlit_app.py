@@ -33,7 +33,7 @@ unique_players = players_basic_info["Player"].sort_values(ascending=True).unique
 unique_players = np.insert(unique_players, 0, "Select Option")
 unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
 unique_teams = np.insert(unique_teams, 0, "Select Option")
-players_basic_info["Nation"] = players_basic_info.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
+players_basic_info["Country"] = players_basic_info.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
 unique_nations = players_basic_info["Country"].sort_values(ascending=True).unique()
 unique_nations = np.insert(unique_nations, 0, "Select Option")
 
