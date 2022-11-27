@@ -6,12 +6,12 @@ from tensorflow import keras
 
 @st.cache(allow_output_mutation=True)
 def get_model():
-    return keras.models.load_model('./data/recommender_bp_model')
+    return keras.models.load_model('./data/recommender_bp_model_2022')
 
 
 @st.cache
 def load_joint_df():
-    return pd.read_csv("./data/joint_df.csv")
+    return pd.read_csv("./data/joint_df_2022.csv")
 
 
 def get_recommendation_model(team, model, df):
