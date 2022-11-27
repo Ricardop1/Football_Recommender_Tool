@@ -11,7 +11,7 @@ def get_model():
 
 @st.cache
 def load_joint_df():
-    return pd.read_csv("./data/joint_df_2022.csv")
+    return pd.read_csv("./data/nation_joint_df_2022.csv")
 
 
 def get_recommendation_model(team, model, df):
