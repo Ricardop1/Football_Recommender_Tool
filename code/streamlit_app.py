@@ -27,7 +27,7 @@ only_stats = stats_to_scale.iloc[:, 1:]
 only_stats = (only_stats - only_stats.min()) / (only_stats.max() - only_stats.min())
 
 plot_players = pd.concat([stats_to_scale.iloc[:, 0], only_stats], axis=1)
-st.table(stats_to_scale.head())
+st.table(plot_players.head())
 
 unique_players = players_basic_info["Player"].sort_values(ascending=True).unique()
 unique_players = np.insert(unique_players, 0, "Select Option")
