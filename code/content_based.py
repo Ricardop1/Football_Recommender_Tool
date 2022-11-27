@@ -7,7 +7,6 @@ import plotly.graph_objects as go
 from paretoset import paretoset
 
 
-@st.cache
 def get_full_stats(minutes):
     full_data = pd.read_csv("./data/full_data_2022.csv")
     full_data = full_data[(full_data['Pos'] != 'GK') & (full_data["MP"] >= minutes)].reset_index()
