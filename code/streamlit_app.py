@@ -62,6 +62,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize1")
 
     fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
+    st.write(st.session_state.select_player)
     st.plotly_chart(fig_play, use_container_width=True)
 
 elif "select_team" in st.session_state and \
