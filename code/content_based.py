@@ -245,14 +245,17 @@ def get_national_team(nation, all_stats):
      "max","max","max","max","max","max",
      "min","max","max","max","max","max",
      "max","max","max"]
+    def_weigts = ["max" for i in col_def]
     mid_weights = ["max", "max","max","max","max","max",
                    "max","max","max","max","max","max",
                    "max","max","max","max","max","max",]
+    mid_weights = ["max" for i in col_mid]
     att_weights = ["max", "max","max","max","max","max",
                    "min","max","max","max","max","max",
                    "min","max","min","max","max","max",
                    "max","max","max","min","max","max",
                    "max","max","max"]
+    att_weights = ["max" for i in col_att]
     mask_def = paretoset(data_def[col_def], sense=def_weigts)
     mask_mid = paretoset(data_mid[col_mid], sense=mid_weights)
     mask_att = paretoset(data_att[col_att], sense=att_weights)

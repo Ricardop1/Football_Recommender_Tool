@@ -5,3 +5,4 @@ plotly
 plotly.graph_objects
 scikit-learn
 paretoset
+pycountry

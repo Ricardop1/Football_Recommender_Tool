@@ -3,6 +3,7 @@ import streamlit as st
 from content_based import *
 from collaborative_filtering import *
 import pandas as pd
+import pycountry
 
 
 st.title('Football recommender Tool')
@@ -95,6 +96,7 @@ elif "select_nation" in st.session_state and \
     def_df, mid_df, att_df = get_national_team(st.session_state.select_nation, all_stats)
 
     st.write(f"Recommender defensive players for {st.session_state.select_nation}:")
+    def_df["Country"] = def_df.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()))
     st.table(def_df)
     st.write(f"Recommender midfield players for {st.session_state.select_nation}:")
     st.table(mid_df)
