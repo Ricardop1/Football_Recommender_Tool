@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
 from paretoset import paretoset
-
+import pycountry
 
 def get_full_stats(minutes):
     full_data = pd.read_csv("./data/full_data_2022.csv")
@@ -228,6 +228,7 @@ def get_scaled_df_with_team(pos, team, all_stats):
 
 
 def get_national_team(nation, all_stats):
+    all_stats["Nation"] = all_stats.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
     pos_df = get_positions_df(all_stats)
 
     data_def, col_def = pos_df["DEF"]
