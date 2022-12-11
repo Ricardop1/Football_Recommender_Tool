@@ -218,7 +218,6 @@ def get_recommendation_by_pos_team(team, pos, num, all_stats):
     df_team.drop(["index"], axis=1, inplace=True)
 
     df_stats = df_team[cols_pos]
-    st.write(cols_pos)
     scaler = StandardScaler()
     df_Stats_scaled = scaler.fit_transform(df_stats)
     cosine_matrix = cosine_similarity(df_Stats_scaled)
