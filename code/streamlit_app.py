@@ -94,13 +94,21 @@ elif "select_nation" in st.session_state and \
         select_type == "National Team Recommender" and \
         st.session_state.select_nation != "Select Option":
 
-    def_df, mid_df, att_df = get_national_team(st.session_state.select_nation, all_stats)
+    cb_df, db_df, dm_df, cm_df, am_df, aw_df, st_df = get_national_team(st.session_state.select_nation, all_stats)
 
-    st.write(f"Recommender defensive players for {st.session_state.select_nation}:")
-    st.table(def_df)
-    st.write(f"Recommender midfield players for {st.session_state.select_nation}:")
-    st.table(mid_df)
-    st.write(f"Recommender attack players for {st.session_state.select_nation}:")
-    st.table(att_df)
+    st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
+    st.table(cb_df)
+    st.write(f"Recommender Defensive Backs players for {st.session_state.select_nation}:")
+    st.table(db_df)
+    st.write(f"Recommender Defensive midfield players for {st.session_state.select_nation}:")
+    st.table(dm_df)
+    st.write(f"Recommender Center midfield players for {st.session_state.select_nation}:")
+    st.table(cm_df)
+    st.write(f"Recommender Attacking midfield players for {st.session_state.select_nation}:")
+    st.table(am_df)
+    st.write(f"Recommender Attack Winger players for {st.session_state.select_nation}:")
+    st.table(aw_df)
+    st.write(f"Recommender Stricker players for {st.session_state.select_nation}:")
+    st.table(st_df)
 
 

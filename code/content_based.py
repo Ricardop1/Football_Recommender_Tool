@@ -135,48 +135,42 @@ def get_recommendations_by_player(name_player, df, number_of_recommendations):
     return recommendations(name_player, df, cosine_matrix, number_of_recommendations)
 
 
-def get_positions_df(all_stats):
-    # obtenemos las variables estadisticas para calcular la correlacion con la posicion
+def get_positions_df_national_team(all_stats):
+    high_corr_df_cb = np.unique(DF_COLS + DF_CB_COLS)
+    high_corr_df_db = np.unique(DF_COLS + DF_DB_COLS)
 
-    cols_to_corr = all_stats.iloc[:, 8:].columns.values.tolist()
-    cols_to_corr.append("Pos")
+    high_corr_mf_dm = np.unique(MF_COLS + MF_DM_COLS)
+    high_corr_mf_cm = np.unique(MF_COLS + MF_CM_COLS )
+    high_corr_mf_am = np.unique(MF_COLS + MF_AM_COLS)
 
-    # hacemos one hot encoding de la variable POS
-    df_to_corr = all_stats[cols_to_corr]
-    one_hot = pd.get_dummies(df_to_corr['Pos'])
-    df_to_corr = df_to_corr.drop('Pos', axis=1)
-    df_to_corr = df_to_corr.join(one_hot)
+    high_corr_fw_aw = np.unique(FW_COLS + FW_AW_COLS)
+    high_corr_fw_st = np.unique(FW_COLS + FW_ST_COLS)
 
-    # obtenemos la correlación entre todas las variables y obtenemos las columnas de cada posicion
-    corr_pos = df_to_corr.corr().abs()
-    corr_pos = corr_pos[["DF", "MF", "FW"]]
+    defensive_df_cb = all_stats[list(high_corr_df_cb) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_df_cb = defensive_df_cb[defensive_df_cb["Pos"] == "DF"]
+    defensive_df_db = all_stats[list(high_corr_df_db) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_df_db = defensive_df_db[defensive_df_db["Pos"] == "DF"]
 
-    # obtenemos las variables con una correlación en valor absoluto mayor que 0.5 con cada posición
-    # en el caso de la posicion MF añadimos algunas variables debido a la complejidad de dcha posicion
-    high_corr_df = corr_pos[corr_pos["DF"] > 0.5].index.values
-    high_corr_df = high_corr_df[[x not in ["DF", "MF", "FW"] for x in high_corr_df]]
+    defensive_mf_dm = all_stats[list(high_corr_mf_dm) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_mf_dm = defensive_mf_dm[defensive_mf_dm["Pos"] == "DF"]
+    defensive_mf_cm = all_stats[list(high_corr_mf_cm) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_mf_cm = defensive_mf_cm[defensive_mf_cm["Pos"] == "DF"]
+    defensive_mf_am = all_stats[list(high_corr_mf_am) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_mf_am = defensive_mf_am[defensive_mf_am["Pos"] == "DF"]
 
-    high_corr_mf = corr_pos[corr_pos["MF"] > 0.4].index.values
-    high_corr_mf = high_corr_mf[[x not in ["DF", "MF", "FW"] for x in high_corr_mf]]
-    mf_feat = []
-    high_corr_mf = np.unique(high_corr_mf.tolist() + mf_feat)
-
-    high_corr_fw = corr_pos[corr_pos["FW"] > 0.5].index.values
-    high_corr_fw = high_corr_fw[[x not in ["DF", "MF", "FW"] for x in high_corr_fw]]
-
-    defensive_df = all_stats[list(high_corr_df) + ["Player", "Squad", "Pos", "Nation"]]
-    defensive_df = defensive_df[defensive_df["Pos"] == "DF"]
-
-    midfield_df = all_stats[list(high_corr_mf) + ["Player", "Squad", "Pos", "Nation"]]
-    midfield_df = midfield_df[midfield_df["Pos"] == "MF"]
-
-    forward_df = all_stats[list(high_corr_fw) + ["Player", "Squad", "Pos", "Nation"]]
-    forward_df = forward_df[forward_df["Pos"] == "FW"]
+    defensive_fw_aw = all_stats[list(high_corr_fw_aw) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_fw_aw = defensive_fw_aw[defensive_fw_aw["Pos"] == "DF"]
+    defensive_fw_st = all_stats[list(high_corr_fw_st) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_fw_st = defensive_fw_st[defensive_fw_st["Pos"] == "DF"]
 
     dict_pos = {
-        "DEF": [defensive_df, high_corr_df],
-        "MED": [midfield_df, high_corr_mf],
-        "ATT": [forward_df, high_corr_fw]
+        "CB": [defensive_df_cb, high_corr_df_cb],
+        "DB": [defensive_df_db, high_corr_df_db],
+        "CM": [defensive_mf_cm, high_corr_mf_cm],
+        "DM": [defensive_mf_dm, high_corr_mf_dm],
+        "AM": [defensive_mf_am, high_corr_mf_am],
+        "AW": [defensive_fw_aw, high_corr_fw_aw],
+        "ST": [defensive_fw_st, high_corr_fw_st]
     }
 
     return dict_pos
@@ -254,60 +248,99 @@ def get_scaled_df_with_team(pos, team, all_stats):
 
 def get_national_team(nation, all_stats):
     all_stats["Nation"] = all_stats.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
-    pos_df = get_full_positions_df(all_stats)
+    pos_df = get_positions_df_national_team(all_stats)
 
-    data_def, col_def = pos_df["DEF"]
-    data_def = data_def.loc[data_def.Nation == nation]
+    data_cb, col_cb = pos_df["CB"]
+    data_cb = data_cb.loc[data_cb.Nation == nation]
+    data_db, col_db = pos_df["DB"]
+    data_db = data_db.loc[data_db.Nation == nation]
 
-    data_mid, col_mid = pos_df["MED"]
-    data_mid = data_mid.loc[data_mid.Nation == nation]
+    data_dm, col_dm = pos_df["DM"]
+    data_dm = data_dm.loc[data_dm.Nation == nation]
+    data_cm, col_cm = pos_df["CM"]
+    data_cm = data_cm.loc[data_cm.Nation == nation]
+    data_am, col_am = pos_df["AM"]
+    data_am = data_am.loc[data_am.Nation == nation]
 
-    data_att, col_att = pos_df["ATT"]
-    data_att = data_att.loc[data_att.Nation == nation]
+    data_aw, col_aw = pos_df["AW"]
+    data_aw = data_aw.loc[data_aw.Nation == nation]
+    data_st, col_st = pos_df["ST"]
+    data_st = data_st.loc[data_st.Nation == nation]
 
     st.write(all_stats[all_stats.Nation == nation].shape)
 
-    def_weigts=["max", "max","max","max","max","max",
+    def_weights=["max", "max","max","max","max","max",
      "max","max","max","max","max","max",
      "min","max","max","max","max","max",
      "max","max","max"]
-    def_weigts = ["max" for i in col_def]
+    cb_weights = ["max" for i in col_cb]
+    db_weights = ["max" for i in col_db]
     mid_weights = ["max", "max","max","max","max","max",
                    "max","max","max","max","max","max",
                    "max","max","max","max","max","max",]
-    mid_weights = ["max" for i in col_mid]
+    dm_weights = ["max" for i in col_dm]
+    cm_weights = ["max" for i in col_cm]
+    am_weights = ["max" for i in col_am]
     att_weights = ["max", "max","max","max","max","max",
                    "min","max","max","max","max","max",
                    "min","max","min","max","max","max",
                    "max","max","max","min","max","max",
                    "max","max","max"]
-    att_weights = ["max" for i in col_att]
-    mask_def = paretoset(data_def[col_def], sense=def_weigts)
-    mask_mid = paretoset(data_mid[col_mid], sense=mid_weights)
-    mask_att = paretoset(data_att[col_att], sense=att_weights)
+    aw_weights = ["max" for i in col_aw]
+    st_weights = ["max" for i in col_st]
 
-    paretoset_def = data_def[mask_def]
-    paretoset_mid = data_mid[mask_mid]
-    paretoset_att = data_att[mask_att]
+    mask_cb = paretoset(data_cb[col_cb], sense=cb_weights)
+    mask_db = paretoset(data_db[col_db], sense=db_weights)
+    mask_dm = paretoset(data_dm[col_dm], sense=dm_weights)
+    mask_cm = paretoset(data_cm[col_cm], sense=cm_weights)
+    mask_am = paretoset(data_am[col_am], sense=am_weights)
+    mask_aw = paretoset(data_aw[col_aw], sense=aw_weights)
+    mask_st = paretoset(data_st[col_st], sense=st_weights)
 
-    def_crit = ["+" if w == "max" else "-" for w in def_weigts]
-    mid_crit = ["+" if w == "max" else "-" for w in mid_weights]
-    att_crit = ["+" if w == "max" else "-" for w in att_weights]
+    paretoset_cb = data_cb[mask_cb]
+    paretoset_db = data_db[mask_db]
+    paretoset_dm = data_dm[mask_dm]
+    paretoset_cm = data_cm[mask_cm]
+    paretoset_am = data_am[mask_am]
+    paretoset_aw = data_aw[mask_aw]
+    paretoset_st = data_st[mask_st]
 
-    def_weigts = [1 for w in def_weigts]
-    mid_weights = [1 for w in mid_weights]
-    att_weights = [1 for w in att_weights]
+    cb_crit = ["+" if w == "max" else "-" for w in cb_weights]
+    db_crit = ["+" if w == "max" else "-" for w in db_weights]
+    dm_crit = ["+" if w == "max" else "-" for w in dm_weights]
+    cm_crit = ["+" if w == "max" else "-" for w in cm_weights]
+    am_crit = ["+" if w == "max" else "-" for w in am_weights]
+    aw_crit = ["+" if w == "max" else "-" for w in aw_weights]
+    st_crit = ["+" if w == "max" else "-" for w in st_weights]
 
-    paretoset_def["Rank"] = calc_topsis(data_def[col_def],len(col_def),def_weigts, def_crit)["Rank"]
-    paretoset_def = paretoset_def.sort_values(by=['Rank'])
+    cb_weights = [1 for w in cb_weights]
+    db_weights = [1 for w in db_weights]
+    dm_weights = [1 for w in dm_weights]
+    cm_weights = [1 for w in cm_weights]
+    am_weights = [1 for w in am_weights]
+    aw_weights = [1 for w in aw_weights]
+    st_weights = [1 for w in st_weights]
 
-    paretoset_mid["Rank"] = calc_topsis(data_mid[col_mid],len(col_mid),mid_weights, mid_crit)["Rank"]
-    paretoset_mid = paretoset_mid.sort_values(by=['Rank'])
+    paretoset_cb["Rank"] = calc_topsis(data_cb[col_cb],len(col_cb),cb_weights, cb_crit)["Rank"]
+    paretoset_cb = paretoset_cb.sort_values(by=['Rank'])
+    paretoset_db["Rank"] = calc_topsis(data_db[col_cb],len(col_db),db_weights, db_crit)["Rank"]
+    paretoset_db = paretoset_db.sort_values(by=['Rank'])
 
-    paretoset_att["Rank"] = calc_topsis(data_att[col_att],len(col_att),att_weights, att_crit)["Rank"]
-    paretoset_att = paretoset_att.sort_values(by=['Rank'])
+    paretoset_dm["Rank"] = calc_topsis(data_dm[col_dm],len(col_dm),dm_weights, dm_crit)["Rank"]
+    paretoset_dm = paretoset_dm.sort_values(by=['Rank'])
+    paretoset_cm["Rank"] = calc_topsis(data_cm[col_cm],len(col_cm),cm_weights, cm_crit)["Rank"]
+    paretoset_cm = paretoset_cm.sort_values(by=['Rank'])
+    paretoset_am["Rank"] = calc_topsis(data_am[col_am],len(col_am),am_weights, am_crit)["Rank"]
+    paretoset_am = paretoset_am.sort_values(by=['Rank'])
 
-    return paretoset_def[["Player","Nation"]], paretoset_mid[["Player","Nation"]], paretoset_att[["Player","Nation"]]
+    paretoset_aw["Rank"] = calc_topsis(data_aw[col_aw],len(col_aw),aw_weights, aw_crit)["Rank"]
+    paretoset_aw = paretoset_aw.sort_values(by=['Rank'])
+    paretoset_st["Rank"] = calc_topsis(data_st[col_st],len(col_st),st_weights, st_crit)["Rank"]
+    paretoset_st = paretoset_st.sort_values(by=['Rank'])
+
+    return paretoset_cb[["Player","Nation"]], paretoset_db[["Player","Nation"]], paretoset_dm[["Player","Nation"]], \
+           paretoset_cm[["Player","Nation"]], paretoset_am[["Player","Nation"]], paretoset_aw[["Player","Nation"]],\
+           paretoset_st[["Player","Nation"]]
 
 def Normalize(dataset, nCol, weights):
     for i in range(1, nCol):
