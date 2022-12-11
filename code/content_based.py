@@ -321,19 +321,16 @@ def get_national_team(nation, all_stats):
 
     paretoset_cb["Rank"] = calc_topsis(data_cb[col_cb],len(col_cb),cb_weights, cb_crit)["Rank"]
     paretoset_cb = paretoset_cb.sort_values(by=['Rank'])
-    st.write("Aqui 1")
-    paretoset_db["Rank"] = calc_topsis(data_db[col_cb],len(col_db),db_weights, db_crit)["Rank"]
+    paretoset_db["Rank"] = calc_topsis(data_db[col_db],len(col_db),db_weights, db_crit)["Rank"]
     paretoset_db = paretoset_db.sort_values(by=['Rank'])
-    st.write("Aqui")
+
     paretoset_dm["Rank"] = calc_topsis(data_dm[col_dm],len(col_dm),dm_weights, dm_crit)["Rank"]
     paretoset_dm = paretoset_dm.sort_values(by=['Rank'])
-    st.write("Aqui 2")
     paretoset_cm["Rank"] = calc_topsis(data_cm[col_cm],len(col_cm),cm_weights, cm_crit)["Rank"]
     paretoset_cm = paretoset_cm.sort_values(by=['Rank'])
-    st.write("Aqui 3")
     paretoset_am["Rank"] = calc_topsis(data_am[col_am],len(col_am),am_weights, am_crit)["Rank"]
     paretoset_am = paretoset_am.sort_values(by=['Rank'])
-    st.write("Aqui 4")
+    
     paretoset_aw["Rank"] = calc_topsis(data_aw[col_aw],len(col_aw),aw_weights, aw_crit)["Rank"]
     paretoset_aw = paretoset_aw.sort_values(by=['Rank'])
     paretoset_st["Rank"] = calc_topsis(data_st[col_st],len(col_st),st_weights, st_crit)["Rank"]
