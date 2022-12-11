@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 from paretoset import paretoset
 import pycountry
 
-from . import *
+from cols_constant import *
 
 def get_full_stats(minutes):
     full_data = pd.read_csv("./data/full_data_2022.csv")
