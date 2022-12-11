@@ -302,7 +302,6 @@ def get_national_team(nation, all_stats):
     paretoset_am = data_am[mask_am]
     paretoset_aw = data_aw[mask_aw]
     paretoset_st = data_st[mask_st]
-    st.write(all_stats[all_stats.Nation == nation].shape)
 
     cb_crit = ["+" if w == "max" else "-" for w in cb_weights]
     db_crit = ["+" if w == "max" else "-" for w in db_weights]
@@ -319,9 +318,10 @@ def get_national_team(nation, all_stats):
     am_weights = [1 for w in am_weights]
     aw_weights = [1 for w in aw_weights]
     st_weights = [1 for w in st_weights]
-
+    st.write("Aqui")
     paretoset_cb["Rank"] = calc_topsis(data_cb[col_cb],len(col_cb),cb_weights, cb_crit)["Rank"]
     paretoset_cb = paretoset_cb.sort_values(by=['Rank'])
+    st.write("Aqui ----------")
     paretoset_db["Rank"] = calc_topsis(data_db[col_cb],len(col_db),db_weights, db_crit)["Rank"]
     paretoset_db = paretoset_db.sort_values(by=['Rank'])
 
