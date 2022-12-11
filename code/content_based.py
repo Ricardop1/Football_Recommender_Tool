@@ -188,7 +188,7 @@ def get_full_positions_df(all_stats):
     high_corr_df = np.unique(DF_COLS + DF_CB_COLS + DF_DB_COLS)
     high_corr_mf = np.unique(MF_COLS + MF_CM_COLS + MF_DM_COLS + MF_AM_COLS)
     high_corr_fw = np.unique(FW_COLS + FW_AW_COLS + FW_ST_COLS)
-    
+
     defensive_df = all_stats[list(high_corr_df) + ["Player", "Squad", "Pos", "Nation"]]
     defensive_df = defensive_df[defensive_df["Pos"] == "DF"]
 
@@ -239,7 +239,7 @@ def get_plot_df(all_stats):
 def get_scaled_df_with_team(pos, team, all_stats):
     scaler = MinMaxScaler()
 
-    df_pos, cols_pos = get_positions_df(all_stats)[pos]
+    df_pos, cols_pos = get_full_positions_df(all_stats)[pos]
 
     by_team_pos = df_pos[list(cols_pos) + ["Squad"]].groupby("Squad").mean().reset_index()
     by_team_pos["Player"] = by_team_pos["Squad"]
@@ -255,7 +255,7 @@ def get_scaled_df_with_team(pos, team, all_stats):
 
 def get_national_team(nation, all_stats):
     all_stats["Nation"] = all_stats.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
-    pos_df = get_positions_df(all_stats)
+    pos_df = get_full_positions_df(all_stats)
 
     data_def, col_def = pos_df["DEF"]
     data_def = data_def.loc[data_def.Nation == nation]
