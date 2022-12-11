@@ -152,16 +152,16 @@ def get_positions_df_national_team(all_stats):
     defensive_df_db = defensive_df_db[defensive_df_db["Pos"] == "DF"]
 
     defensive_mf_dm = all_stats[list(high_corr_mf_dm) + ["Player", "Squad", "Pos", "Nation"]]
-    defensive_mf_dm = defensive_mf_dm[defensive_mf_dm["Pos"] == "DF"]
+    defensive_mf_dm = defensive_mf_dm[defensive_mf_dm["Pos"] == "MF"]
     defensive_mf_cm = all_stats[list(high_corr_mf_cm) + ["Player", "Squad", "Pos", "Nation"]]
-    defensive_mf_cm = defensive_mf_cm[defensive_mf_cm["Pos"] == "DF"]
+    defensive_mf_cm = defensive_mf_cm[defensive_mf_cm["Pos"] == "MF"]
     defensive_mf_am = all_stats[list(high_corr_mf_am) + ["Player", "Squad", "Pos", "Nation"]]
-    defensive_mf_am = defensive_mf_am[defensive_mf_am["Pos"] == "DF"]
+    defensive_mf_am = defensive_mf_am[defensive_mf_am["Pos"] == "MF"]
 
     defensive_fw_aw = all_stats[list(high_corr_fw_aw) + ["Player", "Squad", "Pos", "Nation"]]
-    defensive_fw_aw = defensive_fw_aw[defensive_fw_aw["Pos"] == "DF"]
+    defensive_fw_aw = defensive_fw_aw[defensive_fw_aw["Pos"] == "FW"]
     defensive_fw_st = all_stats[list(high_corr_fw_st) + ["Player", "Squad", "Pos", "Nation"]]
-    defensive_fw_st = defensive_fw_st[defensive_fw_st["Pos"] == "DF"]
+    defensive_fw_st = defensive_fw_st[defensive_fw_st["Pos"] == "FW"]
 
     dict_pos = {
         "CB": [defensive_df_cb, high_corr_df_cb],
@@ -330,7 +330,7 @@ def get_national_team(nation, all_stats):
     paretoset_cm = paretoset_cm.sort_values(by=['Rank'])
     paretoset_am["Rank"] = calc_topsis(data_am[col_am],len(col_am),am_weights, am_crit)["Rank"]
     paretoset_am = paretoset_am.sort_values(by=['Rank'])
-    
+
     paretoset_aw["Rank"] = calc_topsis(data_aw[col_aw],len(col_aw),aw_weights, aw_crit)["Rank"]
     paretoset_aw = paretoset_aw.sort_values(by=['Rank'])
     paretoset_st["Rank"] = calc_topsis(data_st[col_st],len(col_st),st_weights, st_crit)["Rank"]
