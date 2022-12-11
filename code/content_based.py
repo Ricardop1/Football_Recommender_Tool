@@ -7,6 +7,8 @@ import plotly.graph_objects as go
 from paretoset import paretoset
 import pycountry
 
+from .cols_constant import *
+
 def get_full_stats(minutes):
     full_data = pd.read_csv("./data/full_data_2022.csv")
     full_data = full_data[(full_data['Pos'] != 'GK') & (full_data["MP"] >= minutes)].reset_index()
@@ -180,8 +182,32 @@ def get_positions_df(all_stats):
     return dict_pos
 
 
+
+def get_full_positions_df(all_stats):
+
+    high_corr_df = np.unique(DF_COLS + DF_CB_COLS + DF_DB_COLS)
+    high_corr_mf = np.unique(MF_COLS + MF_CM_COLS + MF_DM_COLS + MF_AM_COLS)
+    high_corr_fw = np.unique(FW_COLS + FW_AW_COLS + FW_ST_COLS)
+
+    defensive_df = all_stats[list(high_corr_df) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_df = defensive_df[defensive_df["Pos"] == "DF"]
+
+    midfield_df = all_stats[list(high_corr_mf) + ["Player", "Squad", "Pos", "Nation"]]
+    midfield_df = midfield_df[midfield_df["Pos"] == "MF"]
+
+    forward_df = all_stats[list(high_corr_fw) + ["Player", "Squad", "Pos", "Nation"]]
+    forward_df = forward_df[forward_df["Pos"] == "FW"]
+
+    dict_pos = {
+        "DEF": [defensive_df, high_corr_df],
+        "MED": [midfield_df, high_corr_mf],
+        "ATT": [forward_df, high_corr_fw]
+    }
+
+    return dict_pos
+
 def get_recommendation_by_pos_team(team, pos, num, all_stats):
-    df_pos, cols_pos = get_positions_df(all_stats)[pos]
+    df_pos, cols_pos = get_full_positions_df(all_stats)[pos]
 
     by_team_pos = df_pos[list(cols_pos) + ["Squad"]].groupby("Squad").mean().reset_index()
     by_team_pos["Player"] = by_team_pos["Squad"]
