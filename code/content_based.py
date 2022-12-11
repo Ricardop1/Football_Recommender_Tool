@@ -136,15 +136,15 @@ def get_recommendations_by_player(name_player, df, number_of_recommendations):
 
 
 def get_positions_df_national_team(all_stats):
-    high_corr_df_cb = np.unique(DF_COLS + DF_CB_COLS)
-    high_corr_df_db = np.unique(DF_COLS + DF_DB_COLS)
+    high_corr_df_cb = np.unique(DF_CB_COLS)
+    high_corr_df_db = np.unique(DF_DB_COLS)
 
-    high_corr_mf_dm = np.unique(MF_COLS + MF_DM_COLS)
-    high_corr_mf_cm = np.unique(MF_COLS + MF_CM_COLS )
-    high_corr_mf_am = np.unique(MF_COLS + MF_AM_COLS)
+    high_corr_mf_dm = np.unique(MF_DM_COLS)
+    high_corr_mf_cm = np.unique(MF_CM_COLS )
+    high_corr_mf_am = np.unique(MF_AM_COLS)
 
-    high_corr_fw_aw = np.unique(FW_COLS + FW_AW_COLS)
-    high_corr_fw_st = np.unique(FW_COLS + FW_ST_COLS)
+    high_corr_fw_aw = np.unique(FW_AW_COLS)
+    high_corr_fw_st = np.unique(FW_ST_COLS)
 
     defensive_df_cb = all_stats[list(high_corr_df_cb) + ["Player", "Squad", "Pos", "Nation"]]
     defensive_df_cb = defensive_df_cb[defensive_df_cb["Pos"] == "DF"]
