@@ -188,7 +188,7 @@ def get_full_positions_df(all_stats):
     high_corr_df = np.unique(DF_COLS + DF_CB_COLS + DF_DB_COLS)
     high_corr_mf = np.unique(MF_COLS + MF_CM_COLS + MF_DM_COLS + MF_AM_COLS)
     high_corr_fw = np.unique(FW_COLS + FW_AW_COLS + FW_ST_COLS)
-    st.write(all_stats.columns)
+    
     defensive_df = all_stats[list(high_corr_df) + ["Player", "Squad", "Pos", "Nation"]]
     defensive_df = defensive_df[defensive_df["Pos"] == "DF"]
 
@@ -218,7 +218,7 @@ def get_recommendation_by_pos_team(team, pos, num, all_stats):
     df_team.drop(["index"], axis=1, inplace=True)
 
     df_stats = df_team[cols_pos]
-
+    st.write(cols_pos)
     scaler = StandardScaler()
     df_Stats_scaled = scaler.fit_transform(df_stats)
     cosine_matrix = cosine_similarity(df_Stats_scaled)
