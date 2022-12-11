@@ -83,6 +83,6 @@ FW_AW_COLS = ["Mis_Dribbles",
 FW_ST_COLS = ["Att_Medium",
               "Live_Pass_Types",
               "Def 3rd_Touches",
-              "PrdGist_Total",
+              "PrgDist_Total",
               "Def 3rd_Tackles",
               "Tkl_Vs_Dribbles"]
