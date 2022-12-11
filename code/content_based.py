@@ -321,6 +321,7 @@ def get_national_team(nation, all_stats):
 
     paretoset_cb["Rank"] = calc_topsis(data_cb[col_cb],len(col_cb),cb_weights, cb_crit)["Rank"]
     paretoset_cb = paretoset_cb.sort_values(by=['Rank'])
+    st.write("Aqui 1")
     paretoset_db["Rank"] = calc_topsis(data_db[col_cb],len(col_db),db_weights, db_crit)["Rank"]
     paretoset_db = paretoset_db.sort_values(by=['Rank'])
     st.write("Aqui")
