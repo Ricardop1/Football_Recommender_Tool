@@ -267,8 +267,6 @@ def get_national_team(nation, all_stats):
     data_st, col_st = pos_df["ST"]
     data_st = data_st.loc[data_st.Nation == nation]
 
-    st.write(all_stats[all_stats.Nation == nation].shape)
-
     def_weights=["max", "max","max","max","max","max",
      "max","max","max","max","max","max",
      "min","max","max","max","max","max",
@@ -290,6 +288,7 @@ def get_national_team(nation, all_stats):
     st_weights = ["max" for i in col_st]
 
     mask_cb = paretoset(data_cb[col_cb], sense=cb_weights)
+    st.write(all_stats[all_stats.Nation == nation].shape)
     mask_db = paretoset(data_db[col_db], sense=db_weights)
     mask_dm = paretoset(data_dm[col_dm], sense=dm_weights)
     mask_cm = paretoset(data_cm[col_cm], sense=cm_weights)
