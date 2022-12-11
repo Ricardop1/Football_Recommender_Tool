@@ -17,7 +17,7 @@ hide_table_row_index = """
 # Inject CSS with Markdown
 st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
-all_stats = get_full_stats(500)
+all_stats = get_full_stats(800)
 players_basic_info = all_stats.iloc[:, :8]
 
 model = get_model()
