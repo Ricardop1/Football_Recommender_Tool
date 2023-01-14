@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objects as go
 from paretoset import paretoset
 import pycountry
+from mplsoccer import PyPizza, FontManager
 
 from cols_constant import *
 
@@ -106,6 +107,65 @@ def plot_similar_players(player1, player2, df):
 
     return fig
 
+
+def plot_similar_players_pizza(player1, player2, df):
+    params = df.iloc[:, 1:].columns.values.tolist()
+    player1_stats = df[df["Player"] == player1]
+    player1_stats = player1_stats.iloc[:, 1:].copy().values
+    player2_stats = df[df["Player"] == player2]
+    player2_stats = player2_stats.iloc[:, 1:].copy().values
+
+    font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
+                              'Roboto%5Bwdth,wght%5D.ttf')
+
+
+    baker = PyPizza(
+        params=params,
+        #min_range=min_range,        # min range values
+        #max_range=max_range,        # max range values
+        background_color="#222222", straight_line_color="#000000",
+        last_circle_color="#000000", last_circle_lw=2.5, other_circle_lw=0,
+        other_circle_color="#000000", straight_line_lw=1
+    )
+
+    # plot pizza
+    fig, ax = baker.make_pizza(
+        player1_stats,                     # list of values
+        compare_values=player2_stats,    # passing comparison values
+        figsize=(8, 8),             # adjust figsize according to your need
+        color_blank_space="same",   # use same color to fill blank space
+        blank_alpha=0.4,            # alpha for blank-space colors
+        param_location=110,         # where the parameters will be added
+        kwargs_slices=dict(
+            facecolor="#1A78CF", edgecolor="#000000",
+            zorder=1, linewidth=1
+        ),                          # values to be used when plotting slices
+        kwargs_compare=dict(
+            facecolor="#ff9300", edgecolor="#222222", zorder=3, linewidth=1,
+        ),                          # values to be used when plotting comparison slices
+        kwargs_params=dict(
+            color="#F2F2F2", fontsize=12, zorder=5,
+            fontproperties=font_normal.prop, va="center"
+        ),                          # values to be used when adding parameter
+        kwargs_values=dict(
+            color="#000000", fontsize=12,
+            fontproperties=font_normal.prop, zorder=3,
+            bbox=dict(
+                edgecolor="#000000", facecolor="#1A78CF",
+                boxstyle="round,pad=0.2", lw=1
+            )
+        ),                           # values to be used when adding parameter-values
+        kwargs_compare_values=dict(
+            color="#000000", fontsize=12,
+            fontproperties=font_normal.prop, zorder=3,
+            bbox=dict(
+                edgecolor="#000000", facecolor="#FF9300",
+                boxstyle="round,pad=0.2", lw=1
+            )
+        )                            # values to be used when adding comparison-values
+    )
+
+    return fig
 
 def index_from_name(df, name):
     return df[df['Player'] == name].index.values[0]
