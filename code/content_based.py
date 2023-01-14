@@ -118,14 +118,14 @@ def plot_similar_players_pizza(player1, player2, df):
     min_range = player1_stats / 2
     max_range = player1_stats * 2
     #max_range = [i * 2 for i in player1_stats]
-    st.write(min_range.tolist())
+    #st.write(min_range.tolist())
     font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
                               'Roboto%5Bwdth,wght%5D.ttf')
 
 
     baker = PyPizza(
         params=params,
-        min_range = min_range,
+        min_range = min_range[0],
         max_range = max_range,
         background_color="#222222", straight_line_color="#000000",
         last_circle_color="#000000", last_circle_lw=2.5, other_circle_lw=0,
