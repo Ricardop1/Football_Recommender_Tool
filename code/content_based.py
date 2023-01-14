@@ -120,7 +120,7 @@ def plot_similar_players_pizza(player1, player2, df):
     font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
                               'Roboto%5Bwdth,wght%5D.ttf')
 
-
+    st.write(min_range)
     baker = PyPizza(
         params=params,
         min_range = min_range.tolist(),
