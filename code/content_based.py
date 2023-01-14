@@ -131,40 +131,27 @@ def plot_similar_players_pizza(player1, player2, df):
     )
 
     # plot pizza
+   
     fig, ax = baker.make_pizza(
-        player1_stats,                     # list of values
-        compare_values=player2_stats,    # passing comparison values
-        figsize=(8, 8),             # adjust figsize according to your need
-        color_blank_space="same",   # use same color to fill blank space
-        blank_alpha=0.4,            # alpha for blank-space colors
-        param_location=110,         # where the parameters will be added
+        player1_stats,              # list of values
+        figsize=(10, 10),      # adjust figsize according to your need
+        param_location=110,
         kwargs_slices=dict(
-            facecolor="#1A78CF", edgecolor="#000000",
-            zorder=1, linewidth=1
-        ),                          # values to be used when plotting slices
-        kwargs_compare=dict(
-            facecolor="#ff9300", edgecolor="#222222", zorder=3, linewidth=1,
-        ),                          # values to be used when plotting comparison slices
+            facecolor="cornflowerblue", edgecolor="#000000",
+            zorder=2, linewidth=1
+        ),                   # values to be used when plotting slices
         kwargs_params=dict(
-            color="#F2F2F2", fontsize=12, zorder=5,
+            color="#000000", fontsize=12,
             fontproperties=font_normal.prop, va="center"
-        ),                          # values to be used when adding parameter
+        ),                   # values to be used when adding parameter
         kwargs_values=dict(
             color="#000000", fontsize=12,
             fontproperties=font_normal.prop, zorder=3,
             bbox=dict(
-                edgecolor="#000000", facecolor="#1A78CF",
+                edgecolor="#000000", facecolor="cornflowerblue",
                 boxstyle="round,pad=0.2", lw=1
             )
-        ),                           # values to be used when adding parameter-values
-        kwargs_compare_values=dict(
-            color="#000000", fontsize=12,
-            fontproperties=font_normal.prop, zorder=3,
-            bbox=dict(
-                edgecolor="#000000", facecolor="#FF9300",
-                boxstyle="round,pad=0.2", lw=1
-            )
-        )                            # values to be used when adding comparison-values
+        )                    # values to be used when adding parameter-values
     )
 
     return fig
