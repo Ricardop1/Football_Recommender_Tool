@@ -113,7 +113,7 @@ def plot_similar_players_pizza(player1, player2, df):
     player1_stats = df[df["Player"] == player1]
     player1_stats = player1_stats.iloc[:, 1:].copy().values
     player2_stats = df[df["Player"] == player2]
-    player2_stats = player2_stats.iloc[:, 1:].copy().values.tolist()[0]
+    player2_stats = player2_stats.iloc[:, 1:].copy().values
     #min_range = [i / 2 for i in player1_stats]
     min_range = player1_stats / 2
     max_range = player1_stats * 2
