@@ -114,6 +114,8 @@ def plot_similar_players_pizza(player1, player2, df):
     player1_stats = player1_stats.iloc[:, 1:].copy().values.tolist()
     player2_stats = df[df["Player"] == player2]
     player2_stats = player2_stats.iloc[:, 1:].copy().values.tolist()
+    st.write(params)
+    st.write(player1_stats)
 
     font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
                               'Roboto%5Bwdth,wght%5D.ttf')
