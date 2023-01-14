@@ -83,7 +83,7 @@ elif "select_team" in st.session_state and \
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
     fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_team, df_with_team)
     st.plotly_chart(fig_team, use_container_width=True)
-    st.pyplot(fig_play2)
+    st.plotly_chart(fig_play2)
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
         st.session_state.select_team != "Select Option":
