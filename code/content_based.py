@@ -118,7 +118,7 @@ def plot_similar_players_pizza(player1, player2, df):
     min_range = player1_stats / 2
     max_range = player1_stats * 2
     #max_range = [i * 2 for i in player1_stats]
-    st.write(min_range.values)
+    st.write(min_range.values())
     font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
                               'Roboto%5Bwdth,wght%5D.ttf')
 
