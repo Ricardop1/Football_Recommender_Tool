@@ -125,8 +125,8 @@ def plot_similar_players_pizza(player1, player2, df):
 
     baker = PyPizza(
         params=params,
-        min_range = min_range[0],
-        max_range = max_range[0],
+        min_range = min_range.tolist()[0],
+        max_range = max_range.tolist()[0],
         background_color="#222222", straight_line_color="#000000",
         last_circle_color="#000000", last_circle_lw=2.5, other_circle_lw=0,
         other_circle_color="#000000", straight_line_lw=1
