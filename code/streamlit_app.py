@@ -63,9 +63,9 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize1")
 
     fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
-    fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, plot_players)
+
     st.plotly_chart(fig_play, use_container_width=True)
-    st.pyplot(fig_play2)
+
 
 elif "select_team" in st.session_state and \
         select_type == "Similar to Team" and \
@@ -81,7 +81,9 @@ elif "select_team" in st.session_state and \
     df_with_team = get_scaled_df_with_team(position, st.session_state.select_team, all_stats)
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize2")
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
+    fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_team, df_with_team)
     st.plotly_chart(fig_team, use_container_width=True)
+    st.pyplot(fig_play2)
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
         st.session_state.select_team != "Select Option":
