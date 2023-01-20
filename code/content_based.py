@@ -138,8 +138,7 @@ def plot_similar_players_pizza(player1, player2, df):
         player1_stats,                     # list of values
         compare_values=player2_stats,    # passing comparison values
         figsize=(15, 15),             # adjust figsize according to your need
-        color_blank_space="same",   # use same color to fill blank space
-        blank_alpha=0.4,            # alpha for blank-space colors
+        
         param_location=110,         # where the parameters will be added
         kwargs_slices=dict(
             facecolor="#1A78CF", edgecolor="#222222",
@@ -161,7 +160,7 @@ def plot_similar_players_pizza(player1, player2, df):
             )
         ),                           # values to be used when adding parameter-values
         kwargs_compare_values=dict(
-            color="#000000", fontsize=12, zorder=3,
+            color="#000000", fontsize=12, fontproperties=font_normal.prop, zorder=3,
             bbox=dict(
                 edgecolor="#000000", facecolor="#FF9300",
                 boxstyle="round,pad=0.2", lw=1
