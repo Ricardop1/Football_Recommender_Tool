@@ -90,7 +90,8 @@ def plot_similar_players(player1, player2, df):
         r=list(player2_stats.values.squeeze()),
         theta=categories,
         fill='toself',
-        name=player2
+        name=player2,
+        line_color = "blue"
     ))
 
     fig.update_layout(title={
