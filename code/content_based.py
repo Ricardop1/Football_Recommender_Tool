@@ -137,8 +137,8 @@ def plot_similar_players_pizza(player1, player2, df):
     fig, ax = baker.make_pizza(
         player1_stats,                     # list of values
         compare_values=player2_stats,    # passing comparison values
-        figsize=(15, 15),             # adjust figsize according to your need
-        
+        figsize=(10, 10),             # adjust figsize according to your need
+
         param_location=110,         # where the parameters will be added
         kwargs_slices=dict(
             facecolor="#1A78CF", edgecolor="#222222",
