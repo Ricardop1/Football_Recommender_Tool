@@ -66,7 +66,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, plot_players)
 
     st.plotly_chart(fig_play, use_container_width=True)
-    st.plotly_chart(fig_play2, use_container_width=True)
+    st.write(fig_play2)
 
 
 elif "select_team" in st.session_state and \
