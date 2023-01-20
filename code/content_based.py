@@ -124,9 +124,13 @@ def plot_similar_players_pizza(player1, player2, df):
         params=params,
         min_range = min_range,
         max_range = max_range,
-        background_color="#EBEBE9", straight_line_color="#222222",
-        last_circle_color="#222222", last_circle_lw=1, other_circle_lw=0,
-        other_circle_color="#000000", straight_line_lw=1
+        background_color="#EBEBE9",     # background color
+        straight_line_color="#222222",  # color for straight lines
+        straight_line_lw=1,             # linewidth for straight lines
+        last_circle_lw=1,               # linewidth of last circle
+        last_circle_color="#222222",    # color of last circle
+        other_circle_ls="-.",           # linestyle for other circles
+        other_circle_lw=1
     )
 
     # plot pizza
