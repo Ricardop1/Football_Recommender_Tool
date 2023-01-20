@@ -83,14 +83,15 @@ def plot_similar_players(player1, player2, df):
         r=list(player1_stats.values.squeeze()),
         theta=categories,
         fill='toself',
-        name=player1
+        name=player1, line_color = "red"
 
     ))
     fig.add_trace(go.Scatterpolar(
         r=list(player2_stats.values.squeeze()),
         theta=categories,
         fill='toself',
-        name=player2
+        name=player2,
+        line_color = "lightblue"
     ))
 
     fig.update_layout(title={
