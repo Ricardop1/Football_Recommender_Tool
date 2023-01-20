@@ -156,7 +156,7 @@ def plot_similar_players_pizza(player1, player2, df):
             color="#000000", fontsize=12,
             fontproperties=font_normal.prop, zorder=3,
             bbox=dict(
-                edgecolor="#000000", facecolor="#1A78CF",
+                edgecolor="#000000", facecolor="#cornflowerblue",
                 boxstyle="round,pad=0.2", lw=1
             )
         ),                           # values to be used when adding parameter-values
