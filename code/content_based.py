@@ -112,9 +112,9 @@ def plot_similar_players(player1, player2, df):
 def plot_similar_players_pizza(player1, player2, df):
     params = df.iloc[:, 1:].columns
     player1_stats = df[df["Player"] == player1]
-    player1_stats = player1_stats.iloc[:, 1:].copy().values.tolist()[0]
+    player1_stats = player1_stats.iloc[:, 1:].round(2).copy().values.tolist()[0]
     player2_stats = df[df["Player"] == player2]
-    player2_stats = player2_stats.iloc[:, 1:].copy().values.tolist()[0]
+    player2_stats = player2_stats.iloc[:, 1:].round(2).copy().values.tolist()[0]
     min_range = [0 for i in range(len(player1_stats))]
     max_range = [1 for i in range(len(player1_stats))]
     font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
