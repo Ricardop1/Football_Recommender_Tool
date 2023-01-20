@@ -165,6 +165,14 @@ def plot_similar_players_pizza(player1, player2, df):
         )                            # values to be used when adding comparison-values
     )
 
+    # add title
+    fig.text(
+        0.515, 0.99, player1 + " vs " + player2,
+        size=16, fig=fig,
+        highlight_textprops=[{"color": '#1A78CF'}, {"color": '#FF9300'}],
+        ha="center",  color="#F2F2F2"
+    )
+
     return fig
 
 def index_from_name(df, name):
