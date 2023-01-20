@@ -133,7 +133,7 @@ def plot_similar_players_pizza(player1, player2, df):
     fig, ax = baker.make_pizza(
         player1_stats,                     # list of values
         compare_values=player2_stats,    # passing comparison values
-        figsize=(8, 8),             # adjust figsize according to your need
+        figsize=(10, 10),             # adjust figsize according to your need
         color_blank_space="same",   # use same color to fill blank space
         blank_alpha=0.4,            # alpha for blank-space colors
         param_location=110,         # where the parameters will be added
