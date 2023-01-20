@@ -143,10 +143,10 @@ def plot_similar_players_pizza(player1, player2, df):
         param_location=110,         # where the parameters will be added
         kwargs_slices=dict(
             facecolor="#1A78CF", edgecolor="#222222",
-            zorder=1, linewidth=1
+            zorder=2, linewidth=1
         ),                          # values to be used when plotting slices
         kwargs_compare=dict(
-            facecolor="#ff9300", edgecolor="#222222", zorder=3, linewidth=1,
+            facecolor="#ff9300", edgecolor="#222222", zorder=2, linewidth=1,
         ),                          # values to be used when plotting comparison slices
         kwargs_params=dict(
             color="#F2F2F2", fontsize=12, zorder=5
