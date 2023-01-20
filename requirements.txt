@@ -6,3 +6,4 @@ scikit-learn
 paretoset
 pycountry
 mplsoccer
+highlight_text

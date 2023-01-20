@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 from paretoset import paretoset
 import pycountry
 from mplsoccer import PyPizza, FontManager
-
+from highlight_text import fig_text
 from cols_constant import *
 
 def get_full_stats(minutes):
@@ -166,7 +166,7 @@ def plot_similar_players_pizza(player1, player2, df):
     )
 
     # add title
-    fig.text(
+    fig_text(
         0.515, 0.99, player1 + " vs " + player2,
         size=16, fig=fig,
         highlight_textprops=[{"color": '#1A78CF'}, {"color": '#FF9300'}],
