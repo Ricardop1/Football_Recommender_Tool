@@ -149,7 +149,7 @@ def plot_similar_players_pizza(player1, player2, df):
             facecolor="#ff9300", edgecolor="#222222", zorder=2, linewidth=1,
         ),                          # values to be used when plotting comparison slices
         kwargs_params=dict(
-            color="#000000", fontsize=12
+            color="#000000", fontsize=12, fontproperties=font_normal.prop
             , va="center"
         ),                          # values to be used when adding parameter
         kwargs_values=dict(
