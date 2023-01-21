@@ -332,8 +332,8 @@ def get_national_team(nation, all_stats):
     scaler = StandardScaler()
     df_Stats = all_stats.iloc[:,8:]
     df_Stats_scaled = scaler.fit_transform(df_Stats)
-
-    players = pd.concat([all_stats.iloc[:,:8], df_Stats_scaled], axis=1)
+    scaled_features_df = pd.DataFrame(df_Stats_scaled, index=df_Stats.index, columns=df_Stats.columns)
+    players = pd.concat([all_stats.iloc[:,:8], scaled_features_df], axis=1)
     pos_df = get_positions_df_national_team(players)
 
     data_cb, col_cb = pos_df["CB"]
