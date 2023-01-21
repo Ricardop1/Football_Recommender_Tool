@@ -427,9 +427,9 @@ def get_national_team(nation, all_stats):
     paretoset_st["Rank"] = calc_topsis(data_st[col_st],len(col_st),st_weights, st_crit)["Rank"]
     paretoset_st = paretoset_st.sort_values(by=['Rank'])
 
-    return paretoset_cb[["Player","Nation"]], paretoset_db[["Player","Nation"]], paretoset_dm[["Player","Nation"]], \
-           paretoset_cm[["Player","Nation"]], paretoset_am[["Player","Nation"]], paretoset_aw[["Player","Nation"]],\
-           paretoset_st[["Player","Nation"]]
+    return paretoset_cb[["Player","Nation","Squad"]], paretoset_db[["Player","Nation","Squad"]], paretoset_dm[["Player","Nation","Squad"]], \
+           paretoset_cm[["Player","Nation","Squad"]], paretoset_am[["Player","Nation","Squad"]], paretoset_aw[["Player","Nation","Squad"]],\
+           paretoset_st[["Player","Nation","Squad"]]
 
 def Normalize(dataset, nCol, weights):
     for i in range(1, nCol):
