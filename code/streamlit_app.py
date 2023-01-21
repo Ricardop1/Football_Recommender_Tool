@@ -4,6 +4,7 @@ from content_based import *
 from collaborative_filtering import *
 import pandas as pd
 import pycountry
+from cols_constant import *
 
 
 st.title('Football recommender Tool')
@@ -63,7 +64,8 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize1")
 
     fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
-    fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, plot_players)
+    mean_df = create_mean_df(player_plot)
+    fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, mean_df)
 
     st.plotly_chart(fig_play, use_container_width=True)
     st.write(fig_play2)

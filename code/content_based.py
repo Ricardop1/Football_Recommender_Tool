@@ -481,3 +481,12 @@ def calc_topsis(dataset, ncol, weights, impact):
     dataset['Rank'] = (dataset['Topsis Score'].rank(method='max', ascending=False))
     dataset = dataset.astype({"Rank": int})
     return dataset
+
+def create_mean_df(df):
+    df["Shooting"] = df[SHOOTING].mean(axis=1)
+    df["Passing"] = df[PASSING].mean(axis=1)
+    df["Goal Shot Creation"] = df[GSCREATION_MEAN].mean(axis=1)
+    df["Defensive"] = df[DEFENSIVE].mean(axis=1)
+    df["Possession"] = df[POSSESSION].mean(axis=1)
+
+    return df[["Player","Shooting", "Passing", "Goal Shot Creation", "Defensive","Possession"]]

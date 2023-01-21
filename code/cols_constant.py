@@ -86,3 +86,10 @@ FW_ST_COLS = ["Att_Medium",
               "PrgDist_Total",
               "Def 3rd_Tackles",
               "Tkl_Vs_Dribbles"]
+
+SHOOTING = ["Gls_Standard","Sh_Standard","SoT_Standard","G_per_Sh_Standard","G_per_SoT_Standard","Dist_Standard","xG_Expected","npxG_per_Sh_Expected"]
+PASSING = ["Cmp_Total","Att_Total","TotDist_Total","PrgDist_Total","Cmp_Short","Att_Short","Cmp_Medium","Att_Medium","Cmp_Long","Att_Long","Ast","xAG","xA","KP","Final_Third","PPA","CrsPA","Prog"]
+GSCREATION = ["SCA_SCA","PassLive_SCA_Types","PassDead_SCA_Types","Drib_SCA_Types","Sh_SCA_Types","Fld_SCA_Types","Def_SCA_Types","GCA_GCA","PassLive_GCA_Types","PassDead_GCA_Types","Drib_GCA_Types","Sh_GCA_Types","Fld_GCA_Types","Def_GCA_Types"]
+GSCREATION_MEAN = ["SCA_SCA","GCA_GCA"]
+DEFENSIVE = ["Tkl_Tackles","TklW_Tackles","Tkl_Vs_Dribbles","Blocks_Blocks","Sh_Blocks","Pass_Blocks","Int","Tkl+Int","Clr"]
+POSSESSION = ["Touches_Touches","Succ_Dribbles","Att_Dribbles","Rec_Receiving","Prog_Receiving"]
