@@ -106,32 +106,32 @@ elif "select_nation" in st.session_state and \
     st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
     cb_df = cb_df[~cb_df.Player.isin(full_list)]
     st.table(cb_df.head(5))
-    full_list.append(cb_df.head(5).Player.values)
+    full_list.append(cb_df.head(5).Player.values[0])
     st.write(full_list)
     st.write(f"Recommender Defensive Backs players for {st.session_state.select_nation}:")
     db_df = db_df[~db_df.Player.isin(full_list)]
     st.table(db_df.head(5))
-    full_list.append(db_df.head(5).Player.values)
+    full_list.append(db_df.head(5).Player.values[0])
     st.write(full_list)
     st.write(f"Recommender Defensive midfield players for {st.session_state.select_nation}:")
     dm_df = dm_df[~dm_df.Player.isin(full_list)]
     st.table(dm_df.head(5))
-    full_list.append(dm_df.head(5).Player.values)
+    full_list.append(dm_df.head(5).Player.values[0])
     st.write(full_list)
     st.write(f"Recommender Center midfield players for {st.session_state.select_nation}:")
     cm_df = cm_df[~cm_df.Player.isin(full_list)]
     st.table(cm_df.head(5))
-    full_list.append(cm_df.head(5).Player.values)
+    full_list.append(cm_df.head(5).Player.values[0])
     st.write(full_list)
     st.write(f"Recommender Attacking midfield players for {st.session_state.select_nation}:")
     am_df = am_df[~am_df.Player.isin(full_list)]
     st.table(am_df.head(5))
-    full_list.append(am_df.head(5).Player.values)
+    full_list.append(am_df.head(5).Player.values[0])
     st.write(full_list)
     st.write(f"Recommender Attack Winger players for {st.session_state.select_nation}:")
     aw_df = aw_df[~aw_df.Player.isin(full_list)]
     st.table(aw_df.head(5))
-    full_list.append(aw_df.head(5).Player.values)
+    full_list.append(aw_df.head(5).Player.values[0])
     st.write(full_list)
     st.write(f"Recommender Stricker players for {st.session_state.select_nation}:")
     st_df = st_df[~st_df.Player.isin(full_list)]
