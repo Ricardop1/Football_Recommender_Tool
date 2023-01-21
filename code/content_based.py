@@ -334,11 +334,9 @@ def get_national_team(nation, all_stats):
     players = pd.concat([all_stats.iloc[:,:8], only_stats], axis=1)
 
     pos_df = get_positions_df_national_team(players)
-    st.write(players.head())
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
     data_cb[col_cb] = data_cb.apply(lambda row: row[col_cb] * LEAGUES[row.Comp], axis=1)
-    st.write(data_cb.head())
     data_db, col_db = pos_df["DB"]
     data_db = data_db.loc[data_db.Nation == nation]
     data_db[col_db] = data_db.apply(lambda row: row[col_db] * LEAGUES[row.Comp], axis=1)
