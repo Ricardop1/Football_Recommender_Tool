@@ -226,7 +226,7 @@ def get_positions_df_national_team(all_stats):
 
     high_corr_fw_aw = np.unique(FW_AW_COLS)
     high_corr_fw_st = np.unique(FW_ST_COLS)
-    st.write(all_stats["Comp"].head(3))
+    
     defensive_df_cb = all_stats[list(high_corr_df_cb) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_df_cb = defensive_df_cb[defensive_df_cb["Pos"] == "DF"]
     defensive_df_db = all_stats[list(high_corr_df_db) + ["Player", "Squad", "Pos", "Nation","Comp"]]
