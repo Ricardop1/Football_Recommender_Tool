@@ -226,7 +226,7 @@ def get_positions_df_national_team(all_stats):
 
     high_corr_fw_aw = np.unique(FW_AW_COLS)
     high_corr_fw_st = np.unique(FW_ST_COLS)
-    
+
     defensive_df_cb = all_stats[list(high_corr_df_cb) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_df_cb = defensive_df_cb[defensive_df_cb["Pos"] == "DF"]
     defensive_df_db = all_stats[list(high_corr_df_db) + ["Player", "Squad", "Pos", "Nation","Comp"]]
@@ -330,11 +330,11 @@ def get_scaled_df_with_team(pos, team, all_stats):
 def get_national_team(nation, all_stats):
     all_stats["Nation"] = all_stats.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
     pos_df = get_positions_df_national_team(all_stats)
-    st.write(all_stats)
+
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
     st.write(data_cb.head())
-    data_cb[col_cb] = data_cb[col_cb].apply(lambda x: x* LEAGUES[x.Comp])
+    data_cb[col_cb] = data_cb.apply(lambda row: row[col_cb] * LEAGUES[x.Comp], axis=1)
     st.write(data_cb[col_cb].head())
     data_db, col_db = pos_df["DB"]
     data_db = data_db.loc[data_db.Nation == nation]
