@@ -226,21 +226,21 @@ def get_positions_df_national_team(all_stats):
     high_corr_fw_aw = np.unique(FW_AW_COLS)
     high_corr_fw_st = np.unique(FW_ST_COLS)
 
-    defensive_df_cb = all_stats[list(high_corr_df_cb) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_df_cb = all_stats[list(high_corr_df_cb) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_df_cb = defensive_df_cb[defensive_df_cb["Pos"] == "DF"]
-    defensive_df_db = all_stats[list(high_corr_df_db) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_df_db = all_stats[list(high_corr_df_db) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_df_db = defensive_df_db[defensive_df_db["Pos"] == "DF"]
 
-    defensive_mf_dm = all_stats[list(high_corr_mf_dm) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_mf_dm = all_stats[list(high_corr_mf_dm) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_mf_dm = defensive_mf_dm[defensive_mf_dm["Pos"] == "MF"]
-    defensive_mf_cm = all_stats[list(high_corr_mf_cm) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_mf_cm = all_stats[list(high_corr_mf_cm) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_mf_cm = defensive_mf_cm[defensive_mf_cm["Pos"] == "MF"]
-    defensive_mf_am = all_stats[list(high_corr_mf_am) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_mf_am = all_stats[list(high_corr_mf_am) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_mf_am = defensive_mf_am[defensive_mf_am["Pos"] == "MF"]
 
-    defensive_fw_aw = all_stats[list(high_corr_fw_aw) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_fw_aw = all_stats[list(high_corr_fw_aw) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_fw_aw = defensive_fw_aw[defensive_fw_aw["Pos"] == "FW"]
-    defensive_fw_st = all_stats[list(high_corr_fw_st) + ["Player", "Squad", "Pos", "Nation"]]
+    defensive_fw_st = all_stats[list(high_corr_fw_st) + ["Player", "Squad", "Pos", "Nation","Comp"]]
     defensive_fw_st = defensive_fw_st[defensive_fw_st["Pos"] == "FW"]
 
     dict_pos = {
