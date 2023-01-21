@@ -339,6 +339,7 @@ def get_national_team(nation, all_stats):
     data_db[col_db] = data_db.apply(lambda row: row[col_db] * LEAGUES[row.Comp], axis=1)
 
     data_dm, col_dm = pos_df["DM"]
+    st.write(data_dm.loc[data_dm.Player == "Nélson Semedo"])
     data_dm = data_dm.loc[data_dm.Nation == nation]
     data_dm[col_dm] = data_dm.apply(lambda row: row[col_dm] * LEAGUES[row.Comp], axis=1)
     data_cm, col_cm = pos_df["CM"]
