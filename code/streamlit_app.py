@@ -102,7 +102,7 @@ elif "select_nation" in st.session_state and \
 
     cb_df, db_df, dm_df, cm_df, am_df, aw_df, st_df = get_national_team(st.session_state.select_nation, all_stats)
     full_list=[]
-    st.write(full_list)
+    full_lists=[]
     st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
     cb_df = cb_df[~cb_df.Player.isin(full_list)]
     st.table(cb_df.head(5))
@@ -132,7 +132,7 @@ elif "select_nation" in st.session_state and \
     aw_df = aw_df[~aw_df.Player.isin(full_list)]
     st.table(aw_df.head(5))
     full_list.extend(aw_df.head(5).Player.values)
-    
+
     st.write(f"Recommender Stricker players for {st.session_state.select_nation}:")
     st_df = st_df[~st_df.Player.isin(full_list)]
     st.table(st_df.head(5))
