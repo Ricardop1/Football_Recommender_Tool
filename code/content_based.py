@@ -329,7 +329,10 @@ def get_scaled_df_with_team(pos, team, all_stats):
 @st.cache
 def get_national_team(nation, all_stats):
     all_stats["Nation"] = all_stats.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
-    pos_df = get_positions_df_national_team(all_stats)
+    scaler = StandardScaler()
+    df_Stats = all_stats.iloc[:,8:]
+    df_Stats_scaled = scaler.fit_transform(df_Stats)
+    pos_df = get_positions_df_national_team(df_Stats_scaled)
 
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
