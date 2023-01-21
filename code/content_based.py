@@ -483,6 +483,7 @@ def calc_topsis(dataset, ncol, weights, impact):
     return dataset
 
 def create_mean_df(df):
+    st.write(df[SHOOTING].head())
     df["Shooting"] = df[SHOOTING].mean(axis=1)
     df["Passing"] = df[PASSING].mean(axis=1)
     df["Goal Shot Creation"] = df[GSCREATION_MEAN].mean(axis=1)
