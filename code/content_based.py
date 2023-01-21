@@ -216,6 +216,7 @@ def get_recommendations_by_player(name_player, df, number_of_recommendations):
 
 
 def get_positions_df_national_team(all_stats):
+    st.write(all_stats.head(3))
     high_corr_df_cb = np.unique(DF_CB_COLS)
     high_corr_df_db = np.unique(DF_DB_COLS)
 
