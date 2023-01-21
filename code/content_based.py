@@ -9,6 +9,15 @@ import pycountry
 from mplsoccer import PyPizza, FontManager
 from highlight_text import fig_text
 from cols_constant import *
+LEAGUES = {
+    "eng Premier League":1.37,
+    "fr Ligue 1":1.17,
+    "it Serie A":1.19,
+   "es La Liga":1.30,
+    "de Bundesliga":1.31,
+    "pt Primeira Liga":1
+}
+
 
 def get_full_stats(minutes):
     full_data = pd.read_csv("./data/full_data_2022.csv")
@@ -207,7 +216,6 @@ def get_recommendations_by_player(name_player, df, number_of_recommendations):
 
 
 def get_positions_df_national_team(all_stats):
-    st.write(all_stats["Comp"].unique())
     high_corr_df_cb = np.unique(DF_CB_COLS)
     high_corr_df_db = np.unique(DF_DB_COLS)
 
@@ -324,6 +332,7 @@ def get_national_team(nation, all_stats):
 
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
+    st.write(data_cb.head())
     data_db, col_db = pos_df["DB"]
     data_db = data_db.loc[data_db.Nation == nation]
 
