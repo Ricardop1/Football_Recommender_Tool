@@ -330,7 +330,7 @@ def get_scaled_df_with_team(pos, team, all_stats):
 def get_national_team(nation, all_stats):
     all_stats["Nation"] = all_stats.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
     pos_df = get_positions_df_national_team(all_stats)
-
+    st.write(all_stats.loc[all_stats.Player == "Nélson Semedo"])
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
     data_cb[col_cb] = data_cb.apply(lambda row: row[col_cb] * LEAGUES[row.Comp], axis=1)
@@ -339,7 +339,6 @@ def get_national_team(nation, all_stats):
     data_db[col_db] = data_db.apply(lambda row: row[col_db] * LEAGUES[row.Comp], axis=1)
 
     data_dm, col_dm = pos_df["DM"]
-    st.write(data_dm.loc[data_dm.Player == "Nélson Semedo"])
     data_dm = data_dm.loc[data_dm.Nation == nation]
     data_dm[col_dm] = data_dm.apply(lambda row: row[col_dm] * LEAGUES[row.Comp], axis=1)
     data_cm, col_cm = pos_df["CM"]
