@@ -276,7 +276,7 @@ def plot_similar_players(player1, player2, df):
     ))
 
     fig.update_layout(template=None,
-                      height=800,
+                      height=700,
                       title={
         'text': player1 + " vs " + player2,
         'y':0.9,
