@@ -231,6 +231,7 @@ def plot_similar_players_test(player1, player2, df):
         'x':0.5
     },
         width=700,
+        autosize=True,
         height=700,
         polar=dict(
             radialaxis=dict(
