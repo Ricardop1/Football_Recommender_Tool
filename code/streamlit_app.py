@@ -88,7 +88,7 @@ elif "select_team" in st.session_state and \
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize2")
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
     fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_team, df_with_team)
-    st.plotly_chart(fig_team, use_container_width=True)
+    st.plotly_chart(fig_team, use_container_width=True, theme = None)
     st.write(fig_play2)
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
