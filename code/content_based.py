@@ -238,7 +238,10 @@ def plot_similar_players_test(player1, player2, df):
     fig.update_layout(
         updatemenus = updatemenus
     )
-    fig.update_layout(template=None,title={
+    fig.update_layout(
+                      autosize=False,
+                      width=800,
+                      height=800,title={
         'text' : player1 +" vs "+player2,
         'x':0.5
     },
