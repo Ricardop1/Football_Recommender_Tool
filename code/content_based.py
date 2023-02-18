@@ -96,7 +96,7 @@ def plot_similar_players_test(player1, player2, df):
     player1_def, player2_def = get_plot_dataframes(player1,player2, df, DEFENSIVE)
     player1_poss, player2_poss = get_plot_dataframes(player1,player2, df, POSSESSION)
 
-    fig = go.Figure(template="plotly_dark")
+    fig = go.Figure()
 
     fig.add_trace(go.Scatterpolar(
         r=list(player1_stats.values.squeeze()),
@@ -237,7 +237,7 @@ def plot_similar_players_test(player1, player2, df):
     fig.update_layout(
         updatemenus = updatemenus
     )
-    fig.update_layout(template=None,
+    fig.update_layout(template="plotly_dark",
                       autosize=False,
                       width=900,
                       height=800,title={
