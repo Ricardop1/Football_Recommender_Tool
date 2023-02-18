@@ -239,6 +239,13 @@ def plot_similar_players_test(player1, player2, df):
         updatemenus=updatemenus)
 
     fig = dict(data=data, layout=layout)
+    # Add annotation
+    fig.update_layout(
+    annotations=[
+        dict(text="Select metrics:", showarrow=True,
+             x=0, y=1.085, yref="paper", align="left")
+    ]
+)
     return fig
 
 def plot_similar_players(player1, player2, df):
