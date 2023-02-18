@@ -95,8 +95,6 @@ def plot_similar_players_test(player1, player2, df):
     player1_def, player2_def = get_plot_dataframes(player1,player2, df, DEFENSIVE)
     player1_poss, player2_poss = get_plot_dataframes(player1,player2, df, POSSESSION)
 
-    fig = go.Figure()
-
     player1_plot = go.Scatterpolar(
         r=list(player1_stats.values.squeeze()),
         theta=categories,
@@ -123,7 +121,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player2,
         visible=False
-
     )
 
     player1_pass_plot = go.Scatterpolar(
@@ -266,7 +263,8 @@ def plot_similar_players(player1, player2, df):
 
     fig.update_layout(title={
         'text': player1 + " vs " + player2,
-        'x': 0.5
+        'x': 0.5,
+        'xanchor': 'center'
     },
         polar=dict(
             radialaxis=dict(
