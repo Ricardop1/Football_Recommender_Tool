@@ -189,7 +189,7 @@ def plot_similar_players_test(player1, player2, df):
 
     updatemenus = list([
         dict(type="buttons",
-             direction="right",
+             direction="down",
              active=0,
              buttons=list([
                  dict(label = 'all',
@@ -230,8 +230,6 @@ def plot_similar_players_test(player1, player2, df):
         'text' : player1 +" vs "+player2,
         'x':0.5
     },
-        width=100,
-        height=100,
         polar=dict(
             radialaxis=dict(
                 visible=True,
