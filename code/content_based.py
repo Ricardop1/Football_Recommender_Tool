@@ -263,8 +263,10 @@ def plot_similar_players(player1, player2, df):
 
     fig.update_layout(title={
         'text': player1 + " vs " + player2,
-        'x': 0.5,
-        'xanchor': 'center'
+        'y':0.9,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'
     },
         polar=dict(
             radialaxis=dict(
