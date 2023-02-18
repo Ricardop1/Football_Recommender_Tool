@@ -243,7 +243,8 @@ def plot_similar_players_test(player1, player2, df):
                               visible=True,
                               range=[0, 1]
                           )),
-                      showlegend=True)
+                      showlegend=True,
+                      updatemenus=updatemenus)
     return fig
 
 def plot_similar_players(player1, player2, df):
