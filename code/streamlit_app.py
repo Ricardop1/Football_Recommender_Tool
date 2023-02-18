@@ -69,8 +69,9 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, mean_df)
 
     #st.plotly_chart(fig_play, use_container_width=True)
-    st.plotly_chart(fig_test, use_container_width=True, height = 800, width = 900, theme = None)
-    st.write(fig_play2)
+    tab1, tab2 = st.tabs(["Complex Chart", "Mean CHart"])
+    tab1.plotly_chart(fig_test, use_container_width=True, height = 800, width = 900, theme = None)
+    tab2.write(fig_play2)
 
 
 elif "select_team" in st.session_state and \
