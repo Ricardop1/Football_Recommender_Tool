@@ -237,8 +237,7 @@ def plot_similar_players_test(player1, player2, df):
     fig.update_layout(
         updatemenus = updatemenus
     )
-    fig.update_layout(template="plotly_dark",
-                      autosize=False,
+    fig.update_layout(autosize=False,
                       width=900,
                       height=800,title={
         'text' : player1 +" vs "+player2,
