@@ -69,7 +69,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, mean_df)
 
     st.plotly_chart(fig_play, use_container_width=True)
-    st.plotly_chart(fig_test,theme="streamlit",height=800,width=800 )
+    st.plotly_chart(fig_test,use_container_width=True)
     st.write(fig_play2)
 
 
