@@ -84,158 +84,6 @@ def get_plot_dataframes(player1, player2, df, columns):
     player2_stats = df[df["Player"] == player2][columns].copy()
     return player1_stats, player2_stats
 
-def plot_similar_players_testsss(player1, player2, df):
-    categories = df.iloc[:, 1:].columns.values.tolist()
-    player1_stats = df[df["Player"] == player1].iloc[:, 1:].copy()
-    player2_stats = df[df["Player"] == player2].iloc[:, 1:].copy()
-
-    player1_shoot, player2_shoot = get_plot_dataframes(player1,player2, df, SHOOTING)
-    player1_pass, player2_pass = get_plot_dataframes(player1,player2, df, PASSING)
-    player1_gsc, player2_gsc = get_plot_dataframes(player1,player2, df, GSCREATION)
-    player1_def, player2_def = get_plot_dataframes(player1,player2, df, DEFENSIVE)
-    player1_poss, player2_poss = get_plot_dataframes(player1,player2, df, POSSESSION)
-
-    player1_plot = go.Scatterpolar(
-        r=list(player1_stats.values.squeeze()),
-        theta=categories,
-        fill='toself',
-        name=player1
-    )
-    player2_plot = go.Scatterpolar(
-        r=list(player2_stats.values.squeeze()),
-        theta=categories,
-        fill='toself',
-        name=player2
-    )
-
-    player1_shoot_plot = go.Scatterpolar(
-        r=list(player1_shoot.values.squeeze()),
-        theta=SHOOTING,
-        fill='toself',
-        name=player1,
-        visible=False
-    )
-    player2_shoot_plot = go.Scatterpolar(
-        r=list(player2_shoot.values.squeeze()),
-        theta=SHOOTING,
-        fill='toself',
-        name=player2,
-        visible=False
-    )
-
-    player1_pass_plot = go.Scatterpolar(
-        r=list(player1_pass.values.squeeze()),
-        theta=PASSING,
-        fill='toself',
-        name=player1,
-        visible=False
-    )
-    player2_pass_plot = go.Scatterpolar(
-        r=list(player2_pass.values.squeeze()),
-        theta=PASSING,
-        fill='toself',
-        name=player2,
-        visible=False
-    )
-    player1_gsc_plot = go.Scatterpolar(
-        r=list(player1_gsc.values.squeeze()),
-        theta=GSCREATION,
-        fill='toself',
-        name=player1,
-        visible=False
-    )
-    player2_gsc_plot = go.Scatterpolar(
-        r=list(player2_gsc.values.squeeze()),
-        theta=GSCREATION,
-        fill='toself',
-        name=player2,
-        visible=False
-    )
-    player1_def_plot = go.Scatterpolar(
-        r=list(player1_def.values.squeeze()),
-        theta=DEFENSIVE,
-        fill='toself',
-        name=player1,
-        visible=False
-    )
-    player2_def_plot = go.Scatterpolar(
-        r=list(player2_def.values.squeeze()),
-        theta=DEFENSIVE,
-        fill='toself',
-        name=player2,
-        visible=False
-    )
-
-    player1_poss_plot = go.Scatterpolar(
-        r=list(player1_poss.values.squeeze()),
-        theta=POSSESSION,
-        fill='toself',
-        name=player1,
-        visible=False
-    )
-    player2_poss_plot = go.Scatterpolar(
-        r=list(player2_poss.values.squeeze()),
-        theta=POSSESSION,
-        fill='toself',
-        name=player2,
-        visible=False
-    )
-
-    data = [player1_plot, player2_plot, player1_shoot_plot, player2_shoot_plot, player1_pass_plot, player2_pass_plot,
-            player1_gsc_plot,player2_gsc_plot, player1_def_plot, player2_def_plot, player1_poss_plot, player2_poss_plot]
-
-    updatemenus = list([
-        dict(type="buttons",
-             direction="down",
-
-             buttons=list([
-                 dict(label = 'all',
-                      method = 'update',
-                      args = [{'visible': [True, True, False, False, False, False, False, False, False, False,
-                                           False, False]},]),
-                 dict(label = 'Shooting',
-                      method = 'update',
-                      args = [{'visible': [False, False ,True, True, False, False, False, False, False, False,
-                                           False, False]},]),
-                 dict(label = 'Passing',
-                      method = 'update',
-                      args = [{'visible': [False, False ,False, False, True, True, False, False, False, False,
-                                           False, False]},]),
-                 dict(label = 'Goal Shot Creation',
-                      method = 'update',
-                      args = [{'visible': [False, False ,False, False, False, False, True, True, False, False,
-                                           False, False]},]),
-                 dict(label = 'Defensive',
-                      method = 'update',
-                      args = [{'visible': [False, False ,False, False, False, False, False, False, True, True,
-                                           False, False]},]),
-                 dict(label = 'Possession',
-                      method = 'update',
-                      args = [{'visible': [False, False ,False, False, False, False, False, False, False, False,
-                                           True, True]},])
-             ]),
-             )
-    ])
-
-    layout = dict(template=None,title={
-        'text' : player1 +" vs "+player2,
-        'x':0.5
-    },
-        polar=dict(
-            radialaxis=dict(
-                visible=True,
-                range=[0, 1]
-            )),
-        showlegend=True,
-        updatemenus=updatemenus,
-        annotations=[
-            dict(text="Select metrics:", showarrow=True,
-                 x=0, y=1.085, yref="paper", align="left")
-        ])
-
-    fig = dict(data=data, layout=layout)
-
-    return fig
 
 def plot_similar_players_test(player1, player2, df):
     categories = df.iloc[:, 1:].columns.values.tolist()
@@ -353,7 +201,7 @@ def plot_similar_players_test(player1, player2, df):
 
     updatemenus = list([
         dict(type="buttons",
-             direction="down",
+             direction="right",
 
              buttons=list([
                  dict(label = 'all',
@@ -395,12 +243,7 @@ def plot_similar_players_test(player1, player2, df):
                               visible=True,
                               range=[0, 1]
                           )),
-                      showlegend=True,
-                      updatemenus=updatemenus,
-                      annotations=[
-                          dict(text="Select metrics:", showarrow=True,
-                               x=0, y=1.085, yref="paper", align="left")
-                      ])
+                      showlegend=True)
     return fig
 
 def plot_similar_players(player1, player2, df):
