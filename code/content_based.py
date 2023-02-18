@@ -200,7 +200,6 @@ def plot_similar_players_test(player1, player2, df):
     ))
 
     updatemenus = list([
-        dict(type="buttons",
              direction="down",
              pad={"r": 10, "t": 10},
              showactive=True,
