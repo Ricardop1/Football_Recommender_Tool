@@ -220,7 +220,7 @@ def plot_similar_players_test(player1, player2, df):
                       method = 'update',
                       args = [{'visible': [False, False ,False, False, True, True, False, False, False, False,
                                            False, False]},]),
-                 dict(label = 'Goal Shot Creation',
+                 dict(label = 'Gl/Sht Creation',
                       method = 'update',
                       args = [{'visible': [False, False ,False, False, False, False, True, True, False, False,
                                            False, False]},]),
