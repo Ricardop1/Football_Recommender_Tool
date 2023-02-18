@@ -208,7 +208,7 @@ def plot_similar_players_test(player1, player2, df):
              xanchor="left",
              yanchor="top",
              buttons=list([
-                 dict(label = 'all',
+                 dict(label = 'All Metrics',
                       method = 'update',
                       args = [{'visible': [True, True, False, False, False, False, False, False, False, False,
                                            False, False]},]),
