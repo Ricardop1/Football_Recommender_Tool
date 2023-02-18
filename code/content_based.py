@@ -230,6 +230,8 @@ def plot_similar_players_test(player1, player2, df):
         'text' : player1 +" vs "+player2,
         'x':0.5
     },
+        width=700,
+        height=700,
         polar=dict(
             radialaxis=dict(
                 visible=True,
