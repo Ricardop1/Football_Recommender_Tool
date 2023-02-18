@@ -103,7 +103,7 @@ def plot_similar_players_test(player1, player2, df):
         theta=categories,
         fill='toself',
         name=player1,
-        line_color = "indianred",theme="plotly_dark"
+        line_color = "indianred"
     ))
     fig.add_trace(go.Scatterpolar(
         r=list(player2_stats.values.squeeze()),
