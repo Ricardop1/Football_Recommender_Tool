@@ -102,7 +102,6 @@ def plot_similar_players_test(player1, player2, df):
         theta=categories,
         fill='toself',
         name=player1
-
     )
     player2_plot = go.Scatterpolar(
         r=list(player2_stats.values.squeeze()),
@@ -117,7 +116,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player1,
         visible=False
-
     )
     player2_shoot_plot = go.Scatterpolar(
         r=list(player2_shoot.values.squeeze()),
@@ -134,7 +132,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player1,
         visible=False
-
     )
     player2_pass_plot = go.Scatterpolar(
         r=list(player2_pass.values.squeeze()),
@@ -142,7 +139,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player2,
         visible=False
-
     )
     player1_gsc_plot = go.Scatterpolar(
         r=list(player1_gsc.values.squeeze()),
@@ -150,7 +146,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player1,
         visible=False
-
     )
     player2_gsc_plot = go.Scatterpolar(
         r=list(player2_gsc.values.squeeze()),
@@ -158,7 +153,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player2,
         visible=False
-
     )
     player1_def_plot = go.Scatterpolar(
         r=list(player1_def.values.squeeze()),
@@ -166,7 +160,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player1,
         visible=False
-
     )
     player2_def_plot = go.Scatterpolar(
         r=list(player2_def.values.squeeze()),
@@ -174,7 +167,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player2,
         visible=False
-
     )
 
     player1_poss_plot = go.Scatterpolar(
@@ -183,7 +175,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player1,
         visible=False
-
     )
     player2_poss_plot = go.Scatterpolar(
         r=list(player2_poss.values.squeeze()),
@@ -191,7 +182,6 @@ def plot_similar_players_test(player1, player2, df):
         fill='toself',
         name=player2,
         visible=False
-
     )
 
     data = [player1_plot, player2_plot, player1_shoot_plot, player2_shoot_plot, player1_pass_plot, player2_pass_plot,
@@ -249,8 +239,7 @@ def plot_similar_players_test(player1, player2, df):
         updatemenus=updatemenus)
 
     fig = dict(data=data, layout=layout)
-    pio.show(fig)
-
+    return fig
 
 def plot_similar_players(player1, player2, df):
     categories = df.iloc[:, 1:].columns.values.tolist()
