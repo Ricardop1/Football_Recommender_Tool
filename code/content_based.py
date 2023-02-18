@@ -190,7 +190,12 @@ def plot_similar_players_test(player1, player2, df):
     updatemenus = list([
         dict(type="buttons",
              direction="down",
-             active=0,
+             pad={"r": 10, "t": 10},
+             showactive=True,
+             x=0.1,
+             xanchor="left",
+             y=1.1,
+             yanchor="top",
              buttons=list([
                  dict(label = 'all',
                       method = 'update',
@@ -243,7 +248,7 @@ def plot_similar_players_test(player1, player2, df):
         ])
 
     fig = dict(data=data, layout=layout)
-    
+
     return fig
 
 def plot_similar_players(player1, player2, df):
