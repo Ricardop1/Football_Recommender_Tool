@@ -261,7 +261,7 @@ def plot_similar_players(player1, player2, df):
         line_color = "lightblue"
     ))
 
-    fig.update_layout(title={
+    fig.update_layout(template=None,title={
         'text': player1 + " vs " + player2,
         'y':0.9,
         'x':0.5,
