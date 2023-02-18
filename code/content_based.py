@@ -217,7 +217,7 @@ def plot_similar_players_test(player1, player2, df):
              )
     ])
 
-    layout = dict(title={
+    layout = dict(template=None,title={
         'text' : player1 +" vs "+player2,
         'x':0.5
     },
