@@ -206,7 +206,6 @@ def plot_similar_players_test(player1, player2, df):
              showactive=True,
              x=0,
              xanchor="left",
-             yanchor="top",
              buttons=list([
                  dict(label = 'All Metrics',
                       method = 'update',
