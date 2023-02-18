@@ -90,7 +90,7 @@ elif "select_team" in st.session_state and \
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
     fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_team, df_with_team)
     tab1, tab2 = st.tabs(["Detailed Chart", "Mean Chart"])
-    tab1.plotly_chart(fig_team, use_container_width=True)
+    tab1.plotly_chart(fig_team, use_container_width=True, height = 800)
     tab2.write(fig_play2)
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
