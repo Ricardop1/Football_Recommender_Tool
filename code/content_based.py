@@ -190,38 +190,32 @@ def plot_similar_players_test(player1, player2, df):
     updatemenus = list([
         dict(type="buttons",
              direction="down",
-             
+
              buttons=list([
                  dict(label = 'all',
                       method = 'update',
                       args = [{'visible': [True, True, False, False, False, False, False, False, False, False,
-                                           False, False]},
-                              {'title': player1 +" vs "+player2}]),
+                                           False, False]},]),
                  dict(label = 'Shooting',
                       method = 'update',
                       args = [{'visible': [False, False ,True, True, False, False, False, False, False, False,
-                                           False, False]},
-                              {'title': player1 +" vs "+player2}]),
+                                           False, False]},]),
                  dict(label = 'Passing',
                       method = 'update',
                       args = [{'visible': [False, False ,False, False, True, True, False, False, False, False,
-                                           False, False]},
-                              {'title': player1 +" vs "+player2}]),
+                                           False, False]},]),
                  dict(label = 'Goal Shot Creation',
                       method = 'update',
                       args = [{'visible': [False, False ,False, False, False, False, True, True, False, False,
-                                           False, False]},
-                              {'title': player1 +" vs "+player2}]),
+                                           False, False]},]),
                  dict(label = 'Defensive',
                       method = 'update',
                       args = [{'visible': [False, False ,False, False, False, False, False, False, True, True,
-                                           False, False]},
-                              {'title': player1 +" vs "+player2}]),
+                                           False, False]},]),
                  dict(label = 'Possession',
                       method = 'update',
                       args = [{'visible': [False, False ,False, False, False, False, False, False, False, False,
-                                           True, True]},
-                              {'title': player1 +" vs "+player2}])
+                                           True, True]},])
              ]),
              )
     ])
