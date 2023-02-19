@@ -108,15 +108,16 @@ elif "select_nation" in st.session_state and \
 
     cb_df, db_df, dm_df, cm_df, am_df, aw_df, st_df = get_national_team(st.session_state.select_nation, all_stats)
     full_list=[]
-    st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
-    cb_df = cb_df[~cb_df.Player.isin(full_list)]
-    st.table(cb_df.head(5))
-    full_list.extend(cb_df.head(5).Player.values)
 
     st.write(f"Recommender Defensive Backs players for {st.session_state.select_nation}:")
     db_df = db_df[~db_df.Player.isin(full_list)]
     st.table(db_df.head(5))
     full_list.extend(db_df.head(5).Player.values)
+
+    st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
+    cb_df = cb_df[~cb_df.Player.isin(full_list)]
+    st.table(cb_df.head(10))
+    full_list.extend(cb_df.head(5).Player.values)
 
     st.write(f"Recommender Defensive midfield players for {st.session_state.select_nation}:")
     dm_df = dm_df[~dm_df.Player.isin(full_list)]
