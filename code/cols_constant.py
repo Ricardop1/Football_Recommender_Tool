@@ -17,7 +17,8 @@ DF_DB_COLS = ["Dead_Pass_Types",
               "Sh_Blocks",
               "Prog_Receiving",
               "CrsPA",
-              "Tkl+Int"]
+              "Tkl+Int",
+              "Prog"]
 
 DF_CB_COLS = ["Cmp_Long",
               "Sh_Blocks", #-----------
