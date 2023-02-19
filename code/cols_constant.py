@@ -21,12 +21,10 @@ DF_DB_COLS = ["Dead_Pass_Types",
               "Prog"]
 
 DF_CB_COLS = ["Cmp_Long",
-              "Sh_Blocks", #-----------
               "Blocks_Blocks",#-----------
               "Cmp_Total",
               "TotDist_Total",
               "PrgDist_Total",
-              "Gls_Standard"
               ]
 
 MF_COLS = ["Live_Pass_Types",
