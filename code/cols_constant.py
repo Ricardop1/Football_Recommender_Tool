@@ -9,23 +9,33 @@ DF_COLS = ["Sh_Blocks",
            "Int",
            "Mid 3rd_Tackles"]
 
-DF_DB_COLS = ["Dead_Pass_Types",
-              "Att 3rd_Touches",
+DF_DB_COLS = ["Att 3rd_Touches",
               "PPA",
               "Def 3rd_Touches",
               "Cmp_percent_Medium",
-              "Prog_Receiving",
-              "CrsPA",
+              "Rec_Receiving",
+              "Succ_Dribbles"
               "Tkl+Int",
-              "Prog"]
-
+              "Prog",
+              "Live_Touches"]
+#["Att 3rd_Touches",
+ #"PPA",
+ #"Def 3rd_Touches",
+ #"Cmp_percent_Medium",
+ #"Prog_Receiving",
+ #"CrsPA",#-------
+ #"Tkl+Int",
+ #"Prog"]
+#"Succ_Dribbles
+#"Live_Touches"
+#Rec_Receiving
 DF_CB_COLS = ["Cmp_Long",
-              "Blocks_Blocks",#-----------
+              "Live_Touches",
               "Cmp_Total",
               "TotDist_Total",
               "PrgDist_Total",
               ]
-
+#"Live_Touches"
 MF_COLS = ["Live_Pass_Types",
            "Tkl+Int",
            "Att_Total",
