@@ -513,6 +513,7 @@ def get_national_team(nation, all_stats):
     pos_df = get_positions_df_national_team(players)
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
+    st.write(data_cb)
     data_cb[col_cb] = data_cb.apply(lambda row: row[col_cb] * LEAGUES[row.Comp], axis=1)
     data_db, col_db = pos_df["DB"]
     data_db = data_db.loc[data_db.Nation == nation]
