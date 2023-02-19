@@ -24,7 +24,6 @@ DF_CB_COLS = ["Cmp_Long",
               "Cmp_Total",
               "TotDist_Total",
               "PrgDist_Total",
-              "Prog",
               "Blocks_Blocks"
               ]
 
