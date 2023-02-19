@@ -14,7 +14,7 @@ DF_DB_COLS = ["Att 3rd_Touches",
               "Def 3rd_Touches",
               "Cmp_percent_Medium",
               "Rec_Receiving",
-              "Succ_Dribbles"
+              "Succ_Dribbles",
               "Tkl+Int",
               "Prog",
               "Live_Touches"]
