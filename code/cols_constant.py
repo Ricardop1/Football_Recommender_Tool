@@ -18,13 +18,13 @@ DF_DB_COLS = ["Dead_Pass_Types",
               "Prog_Receiving",
               "CrsPA"]
 
-DF_CB_COLS = ["SoT_Standard",
+DF_CB_COLS = ["Tkl_Tackles",
               "Cmp_Long",
-              "KP",
-              "Err",
-              "PassLive_GCA_Types",
-              "TB_Pass_Types"]
-
+              "Tkl+Int","Clr",
+              "Blocks_Blocks",
+              "TB_Pass_Types",
+              "Cmp_Total",
+              "PrgDist_Total"]
 MF_COLS = ["Live_Pass_Types",
            "Tkl+Int",
            "Att_Total",
