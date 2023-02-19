@@ -1,4 +1,5 @@
-DF_COLS = ["Sh_Blocks",
+DF_COLS = []
+s = ["Sh_Blocks",
            "Blocks_Blocks",
            "Pass_Blocks",
            "Tkl_Tackles",
