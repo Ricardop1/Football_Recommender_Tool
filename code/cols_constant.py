@@ -62,8 +62,7 @@ MF_AM_COLS = ["Att 3rd_Touches",
               "CK_Pass_Types",
               "GCA_GCA",
               "PPA",
-              "PassDead_SCA_Types",
-              "Clr"]
+              "PassDead_SCA_Types"]
 
 FW_COLS = ["xG_Expected",
            "PKatt_Standard",
