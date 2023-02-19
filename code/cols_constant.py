@@ -19,7 +19,6 @@ DF_DB_COLS = ["Dead_Pass_Types",
               "CrsPA"]
 
 DF_CB_COLS = ["Cmp_Long",
-              "Tkl+Int",
               "Clr",
               "Sh_Blocks",
               "Blocks_Blocks",
