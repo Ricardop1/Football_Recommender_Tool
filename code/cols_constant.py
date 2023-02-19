@@ -44,10 +44,11 @@ MF_CM_COLS = ["Prog_Receiving",
               "Int",
               "Mid 3rd_Touches"]
 
-MF_DM_COLS = ["Cmp_Long",
+MF_DM_COLS = ["Att_Long",
               "Prog_Receiving",
               "Tkl+Int",
               "Final_Third",
+              "Mis_Dribbles",
               "Clr",
               "Int",
               "Sh_Blocks",
