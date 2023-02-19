@@ -20,11 +20,11 @@ DF_DB_COLS = ["Dead_Pass_Types",
 
 DF_CB_COLS = ["Tkl_Tackles",
               "Cmp_Long",
-              "Tkl+Int","Clr",
+              "Tkl+Int",
+              "Clr",
+              "Pass_Blocks",
               "Blocks_Blocks",
-              "TB_Pass_Types",
-              "Cmp_Total",
-              "PrgDist_Total"]
+              "Cmp_Total"]
 MF_COLS = ["Live_Pass_Types",
            "Tkl+Int",
            "Att_Total",
