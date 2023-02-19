@@ -81,11 +81,11 @@ FW_AW_COLS = ["Mis_Dribbles",
               "Mid 3rd_Tackles"]
 
 FW_ST_COLS = ["Att_Medium",
-              "Live_Pass_Types",
-              "Def 3rd_Touches",
+              "Gls_Standard",
               "PrgDist_Total",
-              "Def 3rd_Tackles",
-              "Tkl_Vs_Dribbles"]
+              "Sh_Standard",
+              "xG_Expected",
+              "GCA_GCA"]
 
 SHOOTING = ["Gls_Standard","Sh_Standard","SoT_Standard","G_per_Sh_Standard","G_per_SoT_Standard","Dist_Standard","xG_Expected","npxG_per_Sh_Expected"]
 PASSING = ["Cmp_Total","Att_Total","TotDist_Total","PrgDist_Total","Cmp_Short","Att_Short","Cmp_Medium","Att_Medium","Cmp_Long","Att_Long","Ast","xAG","xA","KP","Final_Third","PPA","CrsPA","Prog"]
