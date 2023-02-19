@@ -116,7 +116,7 @@ elif "select_nation" in st.session_state and \
 
     st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
     cb_df = cb_df[~cb_df.Player.isin(full_list)]
-    st.table(cb_df.head(10))
+    st.table(cb_df.head(5))
     full_list.extend(cb_df.head(5).Player.values)
 
     st.write(f"Recommender Defensive midfield players for {st.session_state.select_nation}:")
