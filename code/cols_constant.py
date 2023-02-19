@@ -25,7 +25,10 @@ DF_CB_COLS = ["Cmp_Long",
               "Blocks_Blocks",
               "Cmp_Total",
               "Def 3rd_Tackles",
+              "TotDist_Total",
+              "PrgDist_Total"
               ]
+#"Err" ->min
 MF_COLS = ["Live_Pass_Types",
            "Tkl+Int",
            "Att_Total",
