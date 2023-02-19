@@ -23,7 +23,6 @@ DF_CB_COLS = ["Cmp_Long",
               "Clr",
               "Sh_Blocks",
               "Blocks_Blocks",
-              "Cmp_Total",
               "Def 3rd_Tackles",
               "Att_Total",
               "Prog"]
