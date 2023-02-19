@@ -510,10 +510,10 @@ def get_national_team(nation, all_stats):
     only_stats = (df_Stats - df_Stats.min()) / (df_Stats.max() - df_Stats.min())
     players = pd.concat([all_stats.iloc[:,:8], only_stats], axis=1)
 
+    st.write(players.loc[players.Nation == "Portugal"])
     pos_df = get_positions_df_national_team(players)
     data_cb, col_cb = pos_df["CB"]
     data_cb = data_cb.loc[data_cb.Nation == nation]
-    st.write(data_cb)
     data_cb[col_cb] = data_cb.apply(lambda row: row[col_cb] * LEAGUES[row.Comp], axis=1)
     data_db, col_db = pos_df["DB"]
     data_db = data_db.loc[data_db.Nation == nation]
