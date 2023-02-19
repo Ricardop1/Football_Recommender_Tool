@@ -18,7 +18,7 @@ hide_table_row_index = """
 # Inject CSS with Markdown
 st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
-all_stats = get_full_stats(800)
+all_stats = get_full_stats(1000)
 players_basic_info = all_stats.iloc[:, :8]
 
 model = get_model()
@@ -116,7 +116,7 @@ elif "select_nation" in st.session_state and \
 
     st.write(f"Recommender Center Backs players for {st.session_state.select_nation}:")
     cb_df = cb_df[~cb_df.Player.isin(full_list)]
-    st.table(cb_df.head(10))
+    st.table(cb_df.head(5))
     full_list.extend(cb_df.head(5).Player.values)
 
     st.write(f"Recommender Defensive midfield players for {st.session_state.select_nation}:")
