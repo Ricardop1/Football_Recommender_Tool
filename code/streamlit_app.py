@@ -88,7 +88,7 @@ elif "select_team" in st.session_state and \
     df_with_team = get_scaled_df_with_team(position, st.session_state.select_team, all_stats)
     player_plot = st.selectbox("Select Player to Visualize", jugadores, key="select_player_visualize2")
     fig_team = plot_similar_players(player_plot, st.session_state.select_team, df_with_team)
-    tab1 = st.tabs(["Detailed Chart"])
+    tab1,_ = st.tabs(["Detailed Chart"])
     tab1.plotly_chart(fig_team, use_container_width=True, height = 800)
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
