@@ -31,9 +31,9 @@ only_stats = (only_stats - only_stats.min()) / (only_stats.max() - only_stats.mi
 plot_players = pd.concat([stats_to_scale.iloc[:, 0], only_stats], axis=1)
 
 unique_players = players_basic_info["Player"].sort_values(ascending=True).unique()
-unique_players = np.insert(unique_players, 0, "Select Option")
+unique_players = np.insert(unique_players, 0, "Select Player")
 unique_teams = players_basic_info["Squad"].sort_values(ascending=True).unique()
-unique_teams = np.insert(unique_teams, 0, "Select Option")
+unique_teams = np.insert(unique_teams, 0, "Select Team")
 players_basic_info["Country"] = players_basic_info.apply(lambda x: pycountry.countries.get(alpha_2=x.Nation.upper()).name if pycountry.countries.get(alpha_2=x.Nation.upper()) else x.Nation, axis = 1)
 unique_nations = players_basic_info["Country"].sort_values(ascending=True).unique()
 unique_nations = np.insert(unique_nations, 0, "Select Option")
@@ -54,7 +54,7 @@ with col2:
         st.selectbox("Select Team", unique_teams, key="select_team")
 
 
-if "select_player" in st.session_state and st.session_state.select_player != "Select Option":
+if "select_player" in st.session_state and st.session_state.select_player != "Select Player":
     st.write(f"Most similar players to {st.session_state.select_player}:")
 
     jugadores, score = get_recommendations_by_player(st.session_state.select_player, all_stats, 10)
@@ -76,7 +76,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
 
 elif "select_team" in st.session_state and \
         select_type == "Similar to Team" and \
-        st.session_state.select_team != "Select Option":
+        st.session_state.select_team != "Select Team":
 
     position = st.selectbox("Select Position", ["DEF", "MED", "ATT"])
 
