@@ -92,7 +92,7 @@ elif "select_team" in st.session_state and \
     tab1[0].plotly_chart(fig_team, use_container_width=True, height = 800)
 elif "select_team" in st.session_state and \
         select_type == "Best players to fit a Team" and \
-        st.session_state.select_team != "Select Option":
+        st.session_state.select_team != "Select Team":
 
     current_df, recommender_df = get_recommendation_model(st.session_state.select_team,model, joint_df)
     st.write(f"Best 5 current players that played in {st.session_state.select_team}:")
