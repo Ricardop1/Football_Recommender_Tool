@@ -511,27 +511,27 @@ def get_national_team(nation, all_stats):
     players = pd.concat([all_stats.iloc[:,:8], only_stats], axis=1)
 
     pos_df = get_positions_df_national_team(players)
-    data_cb, col_cb = pos_df["CB"]
+    data_cb, col_cb = pos_df["CB"].copy()
     data_cb = data_cb.loc[data_cb.Nation == nation]
     data_cb[col_cb] = data_cb.apply(lambda row: row[col_cb] * LEAGUES[row.Comp], axis=1)
-    data_db, col_db = pos_df["DB"]
+    data_db, col_db = pos_df["DB"].copy()
     data_db = data_db.loc[data_db.Nation == nation]
     data_db[col_db] = data_db.apply(lambda row: row[col_db] * LEAGUES[row.Comp], axis=1)
 
-    data_dm, col_dm = pos_df["DM"]
+    data_dm, col_dm = pos_df["DM"].copy()
     data_dm = data_dm.loc[data_dm.Nation == nation]
     data_dm[col_dm] = data_dm.apply(lambda row: row[col_dm] * LEAGUES[row.Comp], axis=1)
-    data_cm, col_cm = pos_df["CM"]
+    data_cm, col_cm = pos_df["CM"].copy()
     data_cm = data_cm.loc[data_cm.Nation == nation]
     data_cm[col_cm] = data_cm.apply(lambda row: row[col_cm] * LEAGUES[row.Comp], axis=1)
-    data_am, col_am = pos_df["AM"]
+    data_am, col_am = pos_df["AM"].copy()
     data_am = data_am.loc[data_am.Nation == nation]
     data_am[col_am] = data_am.apply(lambda row: row[col_am] * LEAGUES[row.Comp], axis=1)
 
-    data_aw, col_aw = pos_df["AW"]
+    data_aw, col_aw = pos_df["AW"].copy()
     data_aw = data_aw.loc[data_aw.Nation == nation]
     data_aw[col_aw] = data_aw.apply(lambda row: row[col_aw] * LEAGUES[row.Comp], axis=1)
-    data_st, col_st = pos_df["ST"]
+    data_st, col_st = pos_df["ST"].copy()
     data_st = data_st.loc[data_st.Nation == nation]
     data_st[col_st] = data_st.apply(lambda row: row[col_st] * LEAGUES[row.Comp], axis=1)
 
