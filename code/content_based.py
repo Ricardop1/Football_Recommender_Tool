@@ -303,8 +303,8 @@ def plot_similar_players_pizza(player1, player2, df):
     player2_stats = player2_stats.iloc[:, 1:].round(2).copy().values.tolist()[0]
     min_range = [0 for i in range(len(player1_stats))]
     max_range = [1 for i in range(len(player1_stats))]
-    font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
-                              'Roboto%5Bwdth,wght%5D.ttf')
+    # font_normal = FontManager('https://raw.githubusercontent.com/google/fonts/main/apache/roboto/'
+    #                          'Roboto%5Bwdth,wght%5D.ttf')
 
     baker = PyPizza(
         params=params,
@@ -334,19 +334,20 @@ def plot_similar_players_pizza(player1, player2, df):
             facecolor="#ff9300", edgecolor="#222222", zorder=2, linewidth=1,
         ),                          # values to be used when plotting comparison slices
         kwargs_params=dict(
-            color="#000000", fontsize=12, fontproperties=font_normal.prop
+            color="#000000", fontsize=12#, fontproperties=font_normal.prop
             , va="center"
         ),                          # values to be used when adding parameter
         kwargs_values=dict(
-            color="#000000", fontsize=12,
-            fontproperties=font_normal.prop, zorder=3,
+            color="#000000", fontsize=12,#fontproperties=font_normal.prop, 
+            zorder=3,
             bbox=dict(
                 edgecolor="#000000", facecolor="cornflowerblue",
                 boxstyle="round,pad=0.2", lw=1
             )
         ),                           # values to be used when adding parameter-values
         kwargs_compare_values=dict(
-            color="#000000", fontsize=12, fontproperties=font_normal.prop, zorder=3,
+            color="#000000", fontsize=12 #, fontproperties=font_normal.prop
+            , zorder=3,
             bbox=dict(
                 edgecolor="#000000", facecolor="#FF9300",
                 boxstyle="round,pad=0.2", lw=1
