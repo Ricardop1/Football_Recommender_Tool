@@ -92,6 +92,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
         st.write(f"{st.session_state.select_player} {dict(zip(cols_names, player2_stats))}")
         prompt = SIMILAR_PLAYERS_PROMPT.format(player1_name = player_plot, player1_stats=dict(zip(cols_names, player1_stats)),
                                                 player2_name=st.session_state.select_player, player2_stats=dict(zip(cols_names, player2_stats)))
+        st.write(prompt)
         response = client.text_generation(prompt, stream=False, details=True, **gen_kwargs)
         st.write(response.generated_text)
 
