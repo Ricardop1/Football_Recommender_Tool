@@ -87,7 +87,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     tab1.plotly_chart(fig_test, use_container_width=True, height = 800, width = 900, theme = None)
     tab2.write(fig_play2)
     if st.button('Generate Report'):
-        cols_names = mean.iloc[:, 1:].columns
+        cols_names = mean_df.iloc[:, 1:].columns
         st.write(f"{player_plot} {dict(zip(cols_names, player1_stats))}")
         st.write(f"{st.session_state.select_player} {dict(zip(cols_names, player1_stats))}")
 
