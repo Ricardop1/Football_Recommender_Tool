@@ -96,7 +96,6 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
         with st.spinner('GENERATING REPORT'):
             response = client.text_generation(prompt, stream=False, details=True, **gen_kwargs)
         st.success('Done!')
-        st.write(response.generated_text)
         st.info(response.generated_text)
 
 elif "select_team" in st.session_state and \
