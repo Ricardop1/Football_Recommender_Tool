@@ -89,7 +89,11 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     if st.button('Generate Report'):
         cols_names = mean_df.iloc[:, 1:].columns
         st.write(f"{player_plot} {dict(zip(cols_names, player1_stats))}")
-        st.write(f"{st.session_state.select_player} {dict(zip(cols_names, player1_stats))}")
+        st.write(f"{st.session_state.select_player} {dict(zip(cols_names, player2_stats))}")
+        prompt = SIMILAR_PLAYERS_PROMPT.format(player1_name = player_plot, player1_stats=dict(zip(cols_names, player1_stats)),
+                                                player2_name=st.session_state.select_player, player2_stats=dict(zip(cols_names, player2_stats)))
+        response = client.text_generation(prompt, stream=False, details=True, **gen_kwargs)
+        st.write(response.generated_text)
 
 elif "select_team" in st.session_state and \
         select_type == "Similar to Team" and \
