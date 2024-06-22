@@ -8,7 +8,8 @@ from content_based import *
 from collaborative_filtering import *
 from prompts import SIMILAR_PLAYERS_PROMPT
 
-hf_token = ""
+hf_token = st.secrets["HF_TOKEN"]
+API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 client = InferenceClient(API_URL, token=hf_token)
 
 # generation parameter

@@ -8,3 +8,4 @@ paretoset
 pycountry
 mplsoccer
 highlight_text
+huggingface-hub
