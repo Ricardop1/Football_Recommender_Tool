@@ -363,7 +363,7 @@ def plot_similar_players_pizza(player1, player2, df):
         ha="center",  color="#F2F2F2"
     )
 
-    return fig
+    return fig, player1_stats, player2_stats
 
 def index_from_name(df, name):
     return df[df['Player'] == name].index.values[0]

@@ -1,11 +1,24 @@
 import numpy as np
 import streamlit as st
-from content_based import *
-from collaborative_filtering import *
 import pandas as pd
 import pycountry
+from huggingface_hub import InferenceClient
 from cols_constant import *
+from content_based import *
+from collaborative_filtering import *
+from prompts import SIMILAR_PLAYERS_PROMPT
 
+hf_token = ""
+client = InferenceClient(API_URL, token=hf_token)
+
+# generation parameter
+gen_kwargs = dict(
+    max_new_tokens=512,
+    top_k=30,
+    top_p=0.9,
+    temperature=0.2,
+    repetition_penalty=1.02,
+)
 
 st.title('Football recommender Tool')
 hide_table_row_index = """
@@ -66,13 +79,15 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
     #fig_play = plot_similar_players(player_plot, st.session_state.select_player, plot_players)
     fig_test = plot_similar_players_test(player_plot, st.session_state.select_player, plot_players)
     mean_df = create_mean_df(plot_players)
-    fig_play2 = plot_similar_players_pizza(player_plot, st.session_state.select_player, mean_df)
+    fig_play2,player1_stats, player2_stats = plot_similar_players_pizza(player_plot, st.session_state.select_player, mean_df)
 
     #st.plotly_chart(fig_play, use_container_width=True)
     tab1, tab2 = st.tabs(["Detailed Chart", "Mean Chart"])
     tab1.plotly_chart(fig_test, use_container_width=True, height = 800, width = 900, theme = None)
     tab2.write(fig_play2)
-
+    if st.button('Generate Report'):
+        st.write(player1_stats)
+        st.write(player2_stats)
 
 elif "select_team" in st.session_state and \
         select_type == "Similar to Team" and \
