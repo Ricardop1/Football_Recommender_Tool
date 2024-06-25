@@ -8,6 +8,10 @@ from content_based import *
 from collaborative_filtering import *
 from prompts import SIMILAR_PLAYERS_PROMPT
 
+def hf_generator(generator):
+    for token in generator:
+        yield token
+
 hf_token = st.secrets["HF_TOKEN"]
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
 client = InferenceClient(API_URL, token=hf_token)
@@ -95,7 +99,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
         #st.write(prompt)
         with st.spinner('GENERATING REPORT'):
             #response = client.text_generation(prompt, stream=False, details=True, **gen_kwargs)
-            st.write_stream(client.text_generation(prompt, stream=True, details=True, **gen_kwargs).generated_text)
+            st.write_stream(client.text_generation(prompt, stream=True, **gen_kwargs))
 
         st.success('Done!')
         st.info(response.generated_text)
