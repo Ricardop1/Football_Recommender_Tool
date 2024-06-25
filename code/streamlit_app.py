@@ -102,7 +102,7 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
             st.write_stream(client.text_generation(prompt, stream=True, **gen_kwargs))
 
         st.success('Done!')
-        st.info(response.generated_text)
+        #st.info(response.generated_text)
 
 elif "select_team" in st.session_state and \
         select_type == "Similar to Team" and \
