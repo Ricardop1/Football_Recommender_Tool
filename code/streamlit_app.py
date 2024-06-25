@@ -98,8 +98,9 @@ if "select_player" in st.session_state and st.session_state.select_player != "Se
                                                 player2_name=st.session_state.select_player, player2_stats=dict(zip(cols_names, player2_stats)))
         #st.write(prompt)
         with st.spinner('GENERATING REPORT'):
-            #response = client.text_generation(prompt, stream=False, details=True, **gen_kwargs)
-            st.write_stream(client.text_generation(prompt, stream=True, **gen_kwargs))
+            with st.chat_message("assistant"):
+                #response = client.text_generation(prompt, stream=False, details=True, **gen_kwargs)
+                st.write_stream(client.text_generation(prompt, stream=True, **gen_kwargs))
 
         st.success('Done!')
         #st.info(response.generated_text)
